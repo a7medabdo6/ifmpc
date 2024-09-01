@@ -1,0 +1,70 @@
+/* Navbar.module.css */
+
+.appBar {
+    background-color: white;
+}
+
+.logo {
+    flex-grow: 1;
+    display: none; /* Hide by default */
+}
+
+.logoDesktop {
+    display: block;
+}
+
+.searchIconWrapper {
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.activeLink {
+    border-bottom: 1px solid #C99700; /* Active color */
+}
+
+.desActiveLink {
+    color: #a3a3a3; /* Inactive color */
+}
+
+.menuPaper {
+    background-color: #476B87;
+    border-radius: 0;
+}
+
+.menuItem {
+    color: white;
+}
+
+.menuItemHover:hover {
+    background-color: #C99700;
+}
+
+.drawer {
+    width: 250px;
+}
+
+.languageMenu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-left: 1px solid #a3a3a3;
+    border-right: 1px solid #a3a3a3;
+    padding: 0 8px;
+    position: relative;
+}
+
+.languageText {
+    padding-right: 8px;
+}
+
+.fontFamily {
+    font-family: 'Almarai', sans-serif;
+}
