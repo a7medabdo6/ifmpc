@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Item } from "../../data/homeData";
 import Section from "./Section";
-import { Box, Typography, Pagination, PaginationItem } from "@mui/material";
+import { Box, Typography, Pagination, PaginationItem, Button } from "@mui/material";
 import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
@@ -16,106 +16,120 @@ const useStyles = makeStyles((theme) => ({
 
 interface MostPobularContentPublicationsProps {
   projects: Item[];
+  limit: any;
+  count: any;
+  handleNext: any;
+  handlePrevious: any;
+  setOffset:any;
 }
 
-const itemsPerPage = 6;
 
 const MostPobularContentPublications: React.FC<
   MostPobularContentPublicationsProps
-> = ({ projects }) => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
-  const classes = useStyles();
-  const t = useTranslations("pagination");
+> = ({ projects, count,
+  handleNext,
+  handlePrevious,
+  setOffset,
+  limit }) => {
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    console.log(currentPage);
 
-  const handleChangePage = (
-    event: React.ChangeEvent<unknown>,
-    page: number
-  ) => {
-    setCurrentPage(page);
-  };
+    const totalPages = Math.ceil(count / limit);
+    const classes = useStyles();
+    const t = useTranslations("pagination");
 
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
-  };
+    const handleChangePage = (
+      event: React.ChangeEvent<unknown>,
+      page: number
+    ) => {
+      const startIndex = (page - 1) * limit;
+    
+    setOffset(startIndex)
+      setCurrentPage(page);
+    };
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) =>
-      prevPage < totalPages ? prevPage + 1 : prevPage
-    );
-  };
+    const handlePreviousPage = () => {
+      handlePrevious()
+      setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
+    };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const slicedProjects = projects.slice(startIndex, startIndex + itemsPerPage);
+    const handleNextPage = () => {
+      handleNext()
+      setCurrentPage((prevPage) =>
+        prevPage < totalPages ? prevPage + 1 : prevPage
+      );
+    };
 
-  return (
-    <div style={{ backgroundColor: "white" }}>
-      <Section
-        title=""
-        items={slicedProjects}
-        top={true}
-        pathLink="Publications"
-      />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "16px",
-        }}
-      >
-        <Typography
-          onClick={handlePreviousPage}
-          className={classes.title}
-          sx={{
-            cursor: "pointer",
-            marginRight: "16px",
-            color: currentPage === 1 ? "#262626" : "#476B87",
-          }}
-          component="span"
-        >
-          {t(`Previous`)}
-        </Typography>
-        <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handleChangePage}
-          color="primary"
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              components={{
-                previous: KeyboardDoubleArrowLeft,
-                next: KeyboardDoubleArrowRight,
-              }}
-              sx={{
-                "&.Mui-selected": {
-                  backgroundColor: "transparent",
-                  color: "#C99700",
-                  fontWeight: "bold",
-                },
-                "& .MuiTouchRipple-root": {
-                  display: "none",
-                },
-              }}
-            />
-          )}
+    const startIndex = (currentPage - 1) * limit;
+    const slicedProjects = projects.slice(startIndex, startIndex + limit);
+    const isNextDisabled = currentPage === totalPages;
+
+    return (
+      <div style={{ backgroundColor: "white" }}>
+        <Section
+          title=""
+          items={projects}
+          top={true}
+          pathLink="Publications"
         />
-        <Typography
-          onClick={handleNextPage}
-          className={classes.title}
+        <Box
           sx={{
-            cursor: "pointer",
-            marginLeft: "16px",
-            color: currentPage === totalPages ? "#262626" : "#476B87",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "16px",
           }}
-          component="span"
+        >
+                <Button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          sx={{
+            marginRight: "16px",
+            color: currentPage === 1 ? "#B0B0B0" : "#476B87",
+          }}
+        >
+          <KeyboardDoubleArrowLeft />
+          {t(`Previous`)}
+        </Button>
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handleChangePage}
+            color="primary"
+            renderItem={(item) => (
+              <PaginationItem
+                {...item}
+                components={{
+                  previous: KeyboardDoubleArrowLeft,
+                  next: KeyboardDoubleArrowRight,
+                }}
+                sx={{
+                  "&.Mui-selected": {
+                    backgroundColor: "transparent",
+                    color: "#C99700",
+                    fontWeight: "bold",
+                  },
+                  "& .MuiTouchRipple-root": {
+                    display: "none",
+                  },
+                }}
+              />
+            )}
+          />
+          <Button
+          onClick={handleNextPage}
+          disabled={isNextDisabled}
+          sx={{
+            marginLeft: "16px",
+            color: isNextDisabled ? "#B0B0B0" : "#476B87",
+          }}
         >
           {t(`Next`)}
-        </Typography>
-      </Box>
-    </div>
-  );
-};
+          <KeyboardDoubleArrowRight />
+        </Button>
+        </Box>
+      </div>
+    );
+  };
 
 export default MostPobularContentPublications;

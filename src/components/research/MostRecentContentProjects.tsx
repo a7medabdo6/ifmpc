@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Item } from "../../data/homeData";
 import Section from "./Section";
-import { Box, Typography, Pagination, PaginationItem } from "@mui/material";
+import { Box, Typography, Pagination, PaginationItem, Button } from "@mui/material";
 import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
@@ -22,15 +22,24 @@ const useStyles = makeStyles((theme) => ({
 
 interface MostRecentContentProjectsProps {
   projects: Item[];
+  limit:any;
+  count:any;
+  handleNext:any;
+  handlePrevious:any;
+  setOffset:any;
 }
 
-const itemsPerPage = 6;
 
 const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
   projects,
+  count,
+  handleNext,
+  handlePrevious,
+  limit,
+  setOffset
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const totalPages = Math.ceil(count / limit);
   const classes = useStyles();
   const t = useTranslations("pagination");
 
@@ -38,28 +47,36 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
+    const startIndex = (page - 1) * limit;
+    
+    setOffset(startIndex)
     setCurrentPage(page);
   };
 
   const handlePreviousPage = () => {
+    handlePrevious()
     setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
   };
 
   const handleNextPage = () => {
+    handleNext()
     setCurrentPage((prevPage) =>
       prevPage < totalPages ? prevPage + 1 : prevPage
     );
   };
 
   // Logic to slice items based on currentPage
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const slicedProjects = projects.slice(startIndex, startIndex + itemsPerPage);
+  const startIndex = (currentPage - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const slicedProjects = projects.slice(startIndex, startIndex + limit);
+  const isNextDisabled = currentPage === totalPages;
 
   return (
     <div style={{ backgroundColor: "white" }}>
       <Section
         title=""
-        items={slicedProjects}
+        items={projects}
         top={true}
         pathLink="Projects"
         withImage
@@ -72,17 +89,17 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
           marginTop: "16px",
         }}
       >
-        <Typography
-          onClick={handlePreviousPage}
-          sx={{
-            cursor: "pointer",
-            marginRight: "16px",
-            color: currentPage === 1 ? "#262626" : "#476B87",
-          }}
-          component="span"
-        >
-          {t(`Previous`)}
-        </Typography>
+          <Button
+        onClick={handlePreviousPage}
+        disabled={currentPage === 1}
+        sx={{
+          marginRight: "16px",
+          color: currentPage === 1 ? "#B0B0B0" : "#476B87",
+        }}
+      >
+        <KeyboardDoubleArrowLeft />
+        {t(`Previous`)}
+      </Button>
         <Pagination
           count={totalPages}
           page={currentPage}
@@ -108,17 +125,17 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
             />
           )}
         />
-        <Typography
+         <Button
           onClick={handleNextPage}
+          disabled={isNextDisabled}
           sx={{
-            cursor: "pointer",
             marginLeft: "16px",
-            color: currentPage === totalPages ? "#262626" : "#476B87",
+            color: isNextDisabled ? "#B0B0B0" : "#476B87",
           }}
-          component="span"
         >
           {t(`Next`)}
-        </Typography>
+          <KeyboardDoubleArrowRight />
+        </Button>
       </Box>
     </div>
   );

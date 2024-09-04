@@ -17,6 +17,7 @@ import {
 import LoadingIndicator from "@/components/custom/LoadingIndicator";
 import ErrorComponent from "@/components/custom/ErrorComponent";
 
+
 // Define the Publication interface
 interface Publication {
   id: number;
@@ -89,11 +90,14 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const lng = pathAfterSlash;
+  const [count, setCount] = useState<number>(0);
 
+  const [offset, setOffset] = useState(0);
+  const limit = 2;
   useEffect(() => {
     const loadMostRecent = async () => {
       try {
-        const data = await fetchMostRecentPublications(lng);
+        const data = await fetchMostRecentPublications(lng, offset, limit);
         setMostRecent(data?.results || []);
       } catch (err) {
         if (err instanceof Error) {
@@ -107,13 +111,15 @@ const Page = () => {
     };
 
     loadMostRecent();
-  }, [lng]);
+  }, [lng,offset]);
 
   useEffect(() => {
     const loadMostPobular = async () => {
       try {
-        const data = await fetchMostPopularPublications(lng);
+        const data = await fetchMostPopularPublications(lng, offset, limit);
         setMostPobular(data?.results || []);
+        setCount(data?.count || 0)
+
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -126,13 +132,15 @@ const Page = () => {
     };
 
     loadMostPobular();
-  }, [lng]);
+  }, [lng,offset]);
 
   useEffect(() => {
     const loadCategories = async () => {
       try {
         const data: CategoryResponse = await fetchCategories(lng);
         setCategories(data.results);
+        setCount(data?.count || 0)
+
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -187,6 +195,14 @@ const Page = () => {
   const handleClear = () => {
     setCheckedItems({});
     setTextFieldValue("");
+  };
+  const handleNext = async () => {
+
+    setOffset(prevOffset => prevOffset + limit);
+  };
+
+  const handlePrevious = async () => {
+    setOffset(prevOffset => (prevOffset - limit >= 0 ? prevOffset - limit : 0));
   };
   if (loading) return <LoadingIndicator />;
   if (error) return <ErrorComponent message={error} />;
@@ -283,6 +299,12 @@ const Page = () => {
         </Grid>
         <Grid item xs={12} md={9} className={classes.content}>
           <ContentPub
+            setOffset={setOffset}
+
+            limit={limit}
+            handleNext={handleNext}
+            handlePrevious={handlePrevious}
+            count={count}
             MostPobular={
               filteredMostPobular.length > 0 ? filteredMostPobular : MostRecent
             }

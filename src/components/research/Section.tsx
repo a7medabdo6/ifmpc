@@ -165,6 +165,7 @@ const Section: FC<SectionProps> = ({
                         color: "#476B87",
                         fontSize: "18px",
                         cursor: "pointer",
+                        textAlign: pathAfterSlash === "ar" ? "right" : "left",
                         flexDirection:
                           pathAfterSlash === "ar" && title === "Latest Projects"
                             ? "row-reverse"

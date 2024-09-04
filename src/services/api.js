@@ -350,8 +350,8 @@ export const fetchTrainingLast = async (lng) => {
   }
 };
 
-export const fetchMostRecentProjects = async (lng) => {
-  const apiUrl = `${baseUrl}/projects/?sort=-id/`;
+export const fetchMostRecentProjects = async (lng,offset = 0, limit = 5) => {
+  const apiUrl = `${baseUrl}/projects/?sort=-id&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -360,6 +360,7 @@ export const fetchMostRecentProjects = async (lng) => {
         "Accept-Language": lng,
       },
     });
+    
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -377,8 +378,8 @@ export const fetchMostRecentProjects = async (lng) => {
   }
 };
 
-export const fetchMostPopularProjects = async (lng) => {
-  const apiUrl = `${baseUrl}/projects/?sort=-popularity_count/`;
+export const fetchMostPopularProjects = async (lng,offset = 0, limit = 5) => {
+  const apiUrl = `${baseUrl}/projects/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -404,8 +405,8 @@ export const fetchMostPopularProjects = async (lng) => {
   }
 };
 
-export const fetchMostRecentPublications = async (lng) => {
-  const apiUrl = `${baseUrl}/publications/?sort=-id/`;
+export const fetchMostRecentPublications = async (lng,offset = 0, limit = 5) => {
+  const apiUrl = `${baseUrl}/publications/?sort=-id&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -431,8 +432,8 @@ export const fetchMostRecentPublications = async (lng) => {
   }
 };
 
-export const fetchMostPopularPublications = async (lng) => {
-  const apiUrl = `${baseUrl}/publications/?sort=-popularity_count/`;
+export const fetchMostPopularPublications = async (lng,offset = 0, limit = 5) => {
+  const apiUrl = `${baseUrl}/publications/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",

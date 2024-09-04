@@ -67,18 +67,23 @@ const Page = () => {
   const [filteredMostRecent, setFilteredMostRecent] = useState<Publication[]>(
     []
   );
+  
   const [filteredMostPobular, setFilteredMostPobular] = useState<Publication[]>(
     []
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const lng = pathAfterSlash;
+  const [count, setCount] = useState<number>(0);
 
+  const [offset, setOffset] = useState(0);
+  const limit = 2;
   useEffect(() => {
     const loadMostRecent = async () => {
       try {
-        const data = await fetchMostRecentProjects(lng);
+        const data = await fetchMostRecentProjects(lng, offset, limit);
         setMostRecent(data?.results || []);
+        setCount(data?.count || 0)
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -91,12 +96,14 @@ const Page = () => {
     };
 
     loadMostRecent();
-  }, [lng]);
+  }, [lng,offset]);
   useEffect(() => {
     const loadMostPobular = async () => {
       try {
-        const data = await fetchMostPopularProjects(lng);
+        const data = await fetchMostPopularProjects(lng, offset, limit);
         setMostPobular(data?.results || []);
+        setCount(data?.count || 0)
+
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -109,7 +116,7 @@ const Page = () => {
     };
 
     loadMostPobular();
-  }, [lng]);
+  }, [lng,offset]);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -170,6 +177,15 @@ const Page = () => {
   const handleClear = () => {
     setCheckedItems({});
     setTextFieldValue("");
+  };
+
+  const handleNext = async () => {
+    
+    setOffset(prevOffset => prevOffset + limit);
+  };
+
+  const handlePrevious = async () => {
+    setOffset(prevOffset => (prevOffset - limit >= 0 ? prevOffset - limit : 0));
   };
   if (loading) return <LoadingIndicator />;
   if (error) return <ErrorComponent message={error} />;
@@ -268,6 +284,11 @@ const Page = () => {
           }}
         >
           <Content
+          setOffset={setOffset}
+          limit={limit}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          count={count}
             MostPobular={
               filteredMostPobular.length > 0 ? filteredMostPobular : MostRecent
             }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Item } from "../../data/homeData";
 import Section from "./Section";
-import { Box, Typography, Pagination, PaginationItem } from "@mui/material";
+import { Box, Typography, Pagination, PaginationItem, Button } from "@mui/material";
 import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
@@ -22,15 +22,24 @@ const useStyles = makeStyles((theme) => ({
 
 interface MostPopularContentProjectsProps {
   projects: Item[];
+  limit:any;
+  count:any;
+  handleNext:any;
+  handlePrevious:any;
+  setOffset:any;
 }
 
-const itemsPerPage = 6;
 
 const MostPopularContentProjects: React.FC<MostPopularContentProjectsProps> = ({
   projects,
+  count,
+  handleNext,
+  handlePrevious,
+  limit,
+  setOffset
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const totalPages = Math.ceil(count / limit);
   const classes = useStyles();
   const t = useTranslations("pagination");
 
@@ -38,89 +47,96 @@ const MostPopularContentProjects: React.FC<MostPopularContentProjectsProps> = ({
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
+    const startIndex = (page - 1) * limit;
+    
+    setOffset(startIndex)
     setCurrentPage(page);
   };
 
   const handlePreviousPage = () => {
+    handlePrevious()
     setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
   };
 
   const handleNextPage = () => {
+    handleNext()
     setCurrentPage((prevPage) =>
       prevPage < totalPages ? prevPage + 1 : prevPage
     );
   };
 
   // Logic to slice items based on currentPage
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const slicedProjects = projects.slice(startIndex, startIndex + itemsPerPage);
+  const startIndex = (currentPage - 1) * limit;
+  const slicedProjects = projects.slice(startIndex, startIndex + limit);
+  const isNextDisabled = currentPage === totalPages;
 
   return (
     <div style={{ backgroundColor: "white" }}>
-      <Section
-        title=""
-        items={slicedProjects}
-        top={true}
-        pathLink="Projects"
-        withImage
-      />
-      <Box
+      
+    <Section
+      title=""
+      items={projects}
+      top={true}
+      pathLink="Projects"
+      withImage
+    />
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "16px",
+      }}
+    >
+         <Button
+        onClick={handlePreviousPage}
+        disabled={currentPage === 1}
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "16px",
+          marginRight: "16px",
+          color: currentPage === 1 ? "#B0B0B0" : "#476B87",
         }}
       >
-        <Typography
-          onClick={handlePreviousPage}
-          sx={{
-            cursor: "pointer",
-            marginRight: "16px",
-            color: currentPage === 1 ? "#262626" : "#476B87",
-          }}
-          component="span"
-        >
-          {t(`Previous`)}
-        </Typography>
-        <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handleChangePage}
-          color="primary"
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              components={{
-                previous: KeyboardDoubleArrowLeft,
-                next: KeyboardDoubleArrowRight,
-              }}
-              sx={{
-                "&.Mui-selected": {
-                  backgroundColor: "transparent",
-                  color: "#C99700",
-                  fontWeight: "bold",
-                },
-                "& .MuiTouchRipple-root": {
-                  display: "none",
-                },
-              }}
-            />
-          )}
-        />
-        <Typography
-          onClick={handleNextPage}
-          sx={{
-            cursor: "pointer",
-            marginLeft: "16px",
-            color: currentPage === totalPages ? "#262626" : "#476B87",
-          }}
-          component="span"
-        >
-          {t(`Next`)}
-        </Typography>
-      </Box>
-    </div>
+        <KeyboardDoubleArrowLeft />
+        {t(`Previous`)}
+      </Button>
+      <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={handleChangePage}
+        color="primary"
+        renderItem={(item) => (
+          <PaginationItem
+            {...item}
+            components={{
+              previous: KeyboardDoubleArrowLeft,
+              next: KeyboardDoubleArrowRight,
+            }}
+            sx={{
+              "&.Mui-selected": {
+                backgroundColor: "transparent",
+                color: "#C99700",
+                fontWeight: "bold",
+              },
+              "& .MuiTouchRipple-root": {
+                display: "none",
+              },
+            }}
+          />
+        )}
+      />
+       <Button
+        onClick={handleNextPage}
+        disabled={isNextDisabled}
+        sx={{
+          marginLeft: "16px",
+          color: isNextDisabled ? "#B0B0B0" : "#476B87",
+        }}
+      >
+        {t(`Next`)}
+        <KeyboardDoubleArrowRight />
+      </Button>
+    </Box>
+  </div>
   );
 };
 
