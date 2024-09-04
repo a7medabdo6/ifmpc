@@ -281,7 +281,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 gutterBottom
                 className={classes.title}
                 sx={{
-                  fontSize:'18px',
+                  fontSize:'19px',
 
                   fontFamily:
                     pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
