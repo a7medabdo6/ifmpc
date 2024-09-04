@@ -23,10 +23,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& .MuiOutlinedInput-root": {
       height: "14px",
       color: "#fff",
-      fontFamily: "Almarai",
       "& fieldset": {
         borderColor: "#fff",
-        fontFamily: "Almarai",
       },
       "&:hover fieldset": {
         borderColor: "#fff",
@@ -37,12 +35,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     "& .MuiInputLabel-root": {
       color: "#fff",
-      fontFamily: "Almarai",
     },
     marginBottom: "15px",
   },
   title: {
-    // fontFamily: "Almarai",
   },
 }));
 
@@ -130,7 +126,6 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
             color: "white",
             marginBottom: "15px",
             textAlign: pathAfterSlash === "ar" ? "right" : "left",
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           }}
         >
           {HomeData?.web_site_settings?.subscribe_title}
@@ -140,7 +135,6 @@ const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
             fontSize: "13px",
             color: "white",
             textAlign: pathAfterSlash === "ar" ? "right" : "left",
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           }}
           className={classes.title}
         >

@@ -29,7 +29,6 @@ const Page = () => {
       <SearchComponent />
 
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

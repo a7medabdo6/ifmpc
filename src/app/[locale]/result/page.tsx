@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 interface Project {
@@ -263,7 +262,6 @@ const Page = () => {
         </Grid>
       </Grid>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

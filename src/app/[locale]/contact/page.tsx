@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
   },
   title: {
-    fontFamily: "Almarai",
   },
   container: {
     // width: '100%',
@@ -152,7 +151,6 @@ const Page = () => {
         <FAQSection />
       </Box>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
       <ToastContainer />
     </Box>
   );

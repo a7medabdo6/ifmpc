@@ -47,7 +47,6 @@ const Home: FC = () => {
       <HomeContent HomeData={data} />
       <OurPartners />
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </div>
   );
 };

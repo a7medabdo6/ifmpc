@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%", // تعيين عرض الحاوية ليأخذ المساحة القصوى المحتملة
   },
   title: {
-    fontFamily: "Almarai",
   },
   root: {
     height: "85px",
@@ -205,7 +204,6 @@ const Page = () => {
             xs: "0px",
             md: "130px",
           },
-          fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           justifyContent: pathAfterSlash === "ar" ? "flex-end" : "flex-start",
         }}
       >
@@ -213,7 +211,6 @@ const Page = () => {
           style={{
             paddingLeft: "27px",
             paddingTop: "60px",
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           }}
         >
           {t("All Publications")}
@@ -296,7 +293,6 @@ const Page = () => {
         </Grid>
       </Grid>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

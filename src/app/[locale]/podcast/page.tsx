@@ -42,7 +42,6 @@ const Page = () => {
         </Typography>
         <PodcastList />
       </Box>
-      <Footer HomeData={data} />
     </Box>
   );
 };

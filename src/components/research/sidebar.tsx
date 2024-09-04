@@ -19,7 +19,6 @@ import { useTranslations } from "next-intl";
 const useStyles = makeStyles({
   formLabelRoot: {
     color: "#476B87",
-    fontFamily: "Source Sans Pro",
   },
 });
 
@@ -80,8 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           variant="h6"
           sx={{
             fontWeight: "bold",
-            fontFamily:
-              pathAfterSlash === "ar" ? '"Almarai"' : "Source Sans Pro",
+           
           }}
         >
           {t(`Topics`)}
@@ -89,8 +87,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         <Typography
           sx={{
             color: "#476B87",
-            fontFamily:
-              pathAfterSlash === "ar" ? '"Almarai"' : "Source Sans Pro",
+            cursor: "pointer", 
+            "&:hover": {
+              color: "#123456", 
+            },
           }}
           onClick={handleClear}
         >
@@ -157,19 +157,11 @@ const Sidebar: React.FC<SidebarProps> = ({
                       fontSize: "18px",
                       color: "#476B87",
                       lineHeight: "22.63px",
-                      fontFamily:
-                        pathAfterSlash === "ar"
-                          ? '"Almarai"'
-                          : "Source Sans Pro",
+                     
                     }}
                   >
                     <span
-                      style={{
-                        fontFamily:
-                          pathAfterSlash === "ar"
-                            ? '"Almarai"'
-                            : "Source Sans Pro",
-                      }}
+                 
                     >
                       {item.label}
                     </span>
@@ -186,8 +178,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   fontSize: "18px",
                   color: "#476B87",
                   lineHeight: "22.63px",
-                  fontFamily:
-                    pathAfterSlash === "ar" ? '"Almarai"' : "Source Sans Pro",
+               
                 }}
               >
                 <span>({item.projectCount})</span>

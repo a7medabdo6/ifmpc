@@ -18,7 +18,6 @@ export interface Item {
 const useStyles = makeStyles({
   typography: {
     fontWeight: 600,
-    fontFamily: "Almarai",
   },
   chip: {
     margin: "5px",
@@ -54,7 +53,7 @@ const RelatedTopics = () => {
     <div>
       <Typography
         variant="h6"
-        sx={{ fontFamily: "Almarai", fontWeight: "bold" ,
+        sx={{  fontWeight: "bold" ,
           color:'#262626'
         }} // Apply Almarai font here
         className={classes.typography}

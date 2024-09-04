@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 2,
   },
   title: {
-    fontWeight: 600,
+    fontWeight: "600 !important", // Make font-weight important
     color: "#262626",
   },
 }));
@@ -186,10 +186,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
             <Typography
               variant="h5"
               gutterBottom
-              sx={{
-                fontFamily:
-                  pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
-              }}
+         
               className={classes.title}
             >
               {t("LatestPublications")}
@@ -209,10 +206,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
             <Typography
               variant="h5"
               gutterBottom
-              sx={{
-                fontFamily:
-                  pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
-              }}
+            
               className={classes.title}
             >
               {t("UpcomingTrainings")}
@@ -237,8 +231,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
               display: "flex",
               justifyContent:
                 pathAfterSlash === "ar" ? "flex-end" : "flex-start",
-              fontFamily:
-                pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+            
             }}
             variant="h5"
             gutterBottom

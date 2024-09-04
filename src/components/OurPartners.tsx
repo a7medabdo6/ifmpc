@@ -85,7 +85,6 @@ const OurPartners: React.FC = () => {
           marginTop:'1.2rem',
           marginBottom:'1.7rem',
           textAlign: pathAfterSlash === "ar" ? "right" : "left",
-          fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           fontWeight:600
         }}
         variant="h6"

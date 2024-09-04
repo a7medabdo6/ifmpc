@@ -21,7 +21,6 @@ const Page: React.FC = () => {
       <OurPartners />
 
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </div>
   );
 };

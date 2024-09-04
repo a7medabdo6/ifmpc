@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: "#FFFFFF",
-    // fontFamily: "Almarai",
   },
   logoImage: {
     width: "60%",
@@ -204,8 +203,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                   width: "75%",
                   // paddingRight: pathAfterSlash === "ar" ? "24px" : "0px",
                   textAlign: pathAfterSlash === "ar" ? "right" : "left",
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+              
                 }}
               >
                 {HomeData?.web_site_settings?.footer_short_desc}
@@ -227,8 +225,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 sx={{
                   fontSize:'18px',
 
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+              
                 }}
               >
                 {t("Categories")}
@@ -240,8 +237,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                     variant="body2"
                     sx={{
                       marginBottom: "7px",
-                      fontFamily:
-                        pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+                     
                     }}
                     className={classes.title}
                   >
@@ -260,8 +256,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                   variant="body2"
                   sx={{
                     marginBottom: "10px",
-                    fontFamily:
-                      pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+                  
                   }}
                   className={classes.title}
                 >
@@ -283,8 +278,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 sx={{
                   fontSize:'18px',
 
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+               
                 }}
               >
                 {t("Quick Links")}
@@ -293,8 +287,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+                 
                 }}
                 className={classes.title}
               >
@@ -306,8 +299,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+                 
                 }}
                 className={classes.title}
               >
@@ -323,8 +315,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+             
                 }}
                 className={classes.title}
               >
@@ -351,8 +342,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 sx={{
                   fontSize:'18px',
 
-                  fontFamily:
-                    pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
                 }}
               >
                 {t("Social Media")}
@@ -382,7 +371,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
           sx={{
             width: "100%",
             padding: "10px",
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+           
           }}
           variant="body2"
         >

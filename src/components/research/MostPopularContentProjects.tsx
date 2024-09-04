@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%", // تعيين عرض الحاوية ليأخذ المساحة القصوى المحتملة
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 

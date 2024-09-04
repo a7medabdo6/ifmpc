@@ -16,10 +16,8 @@
 //     padding: "12px",
 //   },
 //   title: {
-//     fontFamily: "Almarai",
 //   },
 //   listText: {
-//     fontFamily: "Almarai",
 //   },
 // }));
 
@@ -132,7 +130,7 @@ interface ArticleContentProps {
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ content }) => {
   return (
-    <Box sx={{ padding: "12px", fontFamily: "Almarai",color:"#262626" }}>
+    <Box sx={{ padding: "12px",color:"#262626" }}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </Box>
   );

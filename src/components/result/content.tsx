@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 

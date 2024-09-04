@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 
@@ -40,7 +39,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
 
   return (
     <Box sx={{ width: "100%"}} dir={pathAfterSlash === "ar" ? "rtl" : "ltr"}>
-      <Typography variant="h6" gutterBottom className={classes.title} sx={{   fontFamily: "Almarai",fontWeight:600}}>
+      <Typography variant="h6" gutterBottom className={classes.title} sx={{   fontWeight:600}}>
         {t(`Search Results for`)} “ {searchQuery} ”
       </Typography>
       <Paper
@@ -57,7 +56,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
         onSubmit={(e) => e.preventDefault()} // Prevent default form submission
       >
         <InputBase
-          sx={{ ml: 1, flex: 1 ,  fontFamily: "Almarai"}}
+          sx={{ ml: 1, flex: 1 }}
           placeholder="Search"
           value={inputValue}
           onKeyDown={handleKeyDown} // Attach the key down handler

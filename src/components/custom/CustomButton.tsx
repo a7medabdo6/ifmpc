@@ -35,7 +35,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     backgroundColor: backgroundColor || "gray",
     borderRadius: borderRadius || "8px",
     borderColor: borderColor || "",
-    fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
     border: "unset",
     fontSize: "18px",
   };

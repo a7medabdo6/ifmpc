@@ -8,26 +8,15 @@ const useStyles = makeStyles({
   textField: {
     '& .MuiInputBase-root': {
       height: '42px',
-      fontFamily: "Almarai",
     },
-    '& .MuiInputLabel-root': {
-      fontFamily: "Almarai",
-    },
-    '& .MuiInputBase-input': {
-      fontFamily: "Almarai",
-    },
-    '& .MuiOutlinedInput-multiline': {
-      fontFamily: "Almarai",
-    },
+  
   },
   title: {
     fontWeight: 600,
     marginBottom: '15px',
-    fontFamily: "Almarai",
     color:'#262626' 
   },
   multiline: {
-    fontFamily: "Almarai",
   }
 });
 

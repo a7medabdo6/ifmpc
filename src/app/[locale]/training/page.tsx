@@ -27,7 +27,6 @@
 //     margin: 24,
 //     marginLeft: "0px !important",
 //     backgroundColor: "#ffffff",
-//     fontFamily: "Almarai",
 //   },
 // }));
 
@@ -181,7 +180,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "0px !important",
 
     backgroundColor: "#ffffff",
-    fontFamily: "Almarai",
   },
 }));
 
@@ -241,7 +239,6 @@ console.log(trainingLast);
               variant="h5"
               style={{ color: "#262626", fontWeight: 600 ,
 
-                fontFamily: "Almarai"
 
               }}
             >
@@ -296,7 +293,6 @@ console.log(trainingLast);
 
       <HowItWorks />
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

@@ -144,7 +144,6 @@ const Home: React.FC = () => {
         </Grid>
       </Box>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

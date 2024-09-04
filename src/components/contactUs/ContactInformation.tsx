@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 600,
     marginBottom: "15px",
-    fontFamily: "Almarai",
   },
   imageContainer: {
     marginTop: "1rem",

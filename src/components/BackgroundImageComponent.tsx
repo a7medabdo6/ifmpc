@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: "12px",
   },
-  // title: {
-  //   fontFamily: "Almarai",
-  // },
+  
 }));
 
 interface HomeDataType {
@@ -77,7 +75,6 @@ const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ Hom
           variant="h4"
           gutterBottom
           sx={{
-            fontFamily: pathAfterSlash === 'ar' ? 'Almarai' : 'Source Sans Pro',
             width: isSmallScreen ? "100%" : "34%",
           }}
         >

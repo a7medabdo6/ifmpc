@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 
@@ -206,7 +205,6 @@ const Page = () => {
             paddingLeft: "11px",
             paddingTop: "60px",
 
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
           }}
         >
           {t("All Projects")}
@@ -280,7 +278,6 @@ const Page = () => {
         </Grid>
       </Grid>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

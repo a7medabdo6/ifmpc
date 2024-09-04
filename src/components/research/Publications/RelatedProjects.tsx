@@ -6,7 +6,6 @@ import { useAppSelector } from "@/lib/hooks";
 const useStyles = makeStyles({
   typography: {
     fontWeight: 600,
-    fontFamily: "Almarai",
 
   },
   chip: {
@@ -14,7 +13,6 @@ const useStyles = makeStyles({
     backgroundColor: "rgba(71, 107, 135, 0.2)", // Set the desired background color here
     color: "#476B87",
     fontWeight: 400,
-    fontFamily: "Almarai",
 
   },
 });
@@ -27,7 +25,7 @@ const RelatedProjects: React.FC<{ projects: string[] }> = ({ projects }) => {
   return (
     <aside>
       <Typography variant="h6" 
-            sx={{ fontFamily: "Almarai", fontWeight: "bold" }} // Apply Almarai font here
+            sx={{ fontWeight: "bold" }} // Apply Almarai font here
 
       className={classes.typography}>
       {t('Related Projects')}
@@ -38,7 +36,7 @@ const RelatedProjects: React.FC<{ projects: string[] }> = ({ projects }) => {
           <Chip
             label={project}
             key={project}
-            sx={{fontFamily: "Almarai",
+            sx={{
               backgroundColor: "rgba(71, 107, 135, 0.2)",
               color:'#476B87'
             }}

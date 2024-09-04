@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 
@@ -132,10 +131,7 @@ const Section: FC<SectionProps> = ({
                       sx={{
                         color: "#606060",
                         fontWeight: pathAfterSlash === "ar" ? 600 : "",
-                        fontFamily:
-                          pathAfterSlash === "ar"
-                            ? "Almarai"
-                            : "Source Sans Pro",
+                     
                       }}
                       component="span"
                     >
@@ -155,10 +151,7 @@ const Section: FC<SectionProps> = ({
                         color: "#476B87",
                         fontSize: "18px",
                         cursor: "pointer",
-                        fontFamily:
-                          pathAfterSlash === "ar"
-                            ? "Almarai"
-                            : "Source Sans Pro",
+                       
                         flexDirection:
                           pathAfterSlash === "ar" && title === "Latest Projects"
                             ? "row-reverse"
@@ -185,8 +178,7 @@ const Section: FC<SectionProps> = ({
                         : pathAfterSlash === "ar" && title === "Latest Projects"
                         ? "right"
                         : "left",
-                    fontFamily:
-                      pathAfterSlash === "ar" ? "Almarai" : "Source Sans Pro",
+                  
                   }}
                   dangerouslySetInnerHTML={{ __html: item.description.slice(0, 320)  }} // Render HTML
                 />

@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%", // تعيين عرض الحاوية ليأخذ المساحة القصوى المحتملة
   },
   title: {
-    fontFamily: "Almarai",
   },
   noData: {
     textAlign: "center",
@@ -76,7 +75,7 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
   return (
     <div style={{ backgroundColor: "white" }}>
       {projects.length === 0 ? (
-        <Typography sx={{   fontFamily: "Almarai"}} className={classes.noData}>{t("Nodatafound")}</Typography>
+        <Typography className={classes.noData}>{t("Nodatafound")}</Typography>
       ) : (
         <>
           <Section
@@ -101,7 +100,6 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
                   cursor: "pointer",
                   marginRight: "16px",
                   color: currentPage === 1 ? "gray" : "blue",
-                    fontFamily: "Almarai"
                 }}
                 component="span"
                 className={classes.title}
@@ -135,7 +133,6 @@ const MostRecentContentProjects: React.FC<MostRecentContentProjectsProps> = ({
                   cursor: "pointer",
                   marginLeft: "16px",
                   color: currentPage === totalPages ? "gray" : "blue",
-                   fontFamily: "Almarai"
                 }}
                 component="span"
                 className={classes.title}

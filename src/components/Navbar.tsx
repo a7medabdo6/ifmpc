@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px",
   },
   title: {
-    fontFamily: "Almarai",
   },
 }));
 
@@ -60,7 +59,6 @@ const StyledLink = styled(Link)<StyledLinkProps>(({ theme, active }) => ({
 const StyledLinkoption = styled(Link)<StyledLinkProps>(({ theme, active }) => ({
   borderBottom: active ? `1px solid ${colors.active}` : "none",
   color: "white",
-  fontFamily: "Almarai",
 }));
 
 const Navbar: React.FC = () => {
@@ -149,9 +147,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }} // Apply Almarai font here
+         
           className={classes.title}
         >
           {t("home")}
@@ -164,9 +160,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
         <Typography
           variant="body1"
           component="a"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }}
+         
           className={classes.title}
           color={
             currentPath.includes("/research") ? colors.active : colors.desActive
@@ -237,9 +231,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }}
+         
           className={classes.title}
         >
           {t("events")}
@@ -254,9 +246,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }}
+        
           className={classes.title}
         >
           {t("training")}
@@ -271,9 +261,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }}
+         
           className={classes.title}
         >
           {t("podcast")}
@@ -288,9 +276,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-          }}
+        
           className={classes.title}
         >
           {t("whoarewe")}
@@ -305,10 +291,7 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
           variant="body1"
           component="a"
           color="inherit"
-          sx={{
-            fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-
-          }}
+         
           className={classes.title}
         >
           {t("contactus")}
@@ -385,7 +368,6 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
                             className={classes.title}
                             sx={{
                               pr: 1,
-                              fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
 
                               color: anchorEl
                                 ? colors.active
@@ -402,7 +384,6 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
                             className={classes.title}
                             sx={{
                               pr: 1,
-                              fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
 
                               color: anchorEl
                                 ? colors.active
@@ -448,18 +429,14 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
             >
               <MenuItem
                 onClick={() => onSelectChange("en")}
-                sx={{
-                  fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-                }}
+              
                 className={classes.title}
               >
                 {t("en")}
               </MenuItem>
               <MenuItem
                 onClick={() => onSelectChange("ar")}
-                sx={{
-                  fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-                }}
+           
                 className={classes.title}
               >
                 {t("ar")}
@@ -498,7 +475,6 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
                     color="inherit"
                     className={classes.title}
                     sx={{
-                        fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
                       pr: 1,
                       color: anchorEl ? colors.active : colors.desActive,
                     }}
@@ -512,7 +488,6 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
                     color="inherit"
                     className={classes.title}
                     sx={{
-                      fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
 
                       pr: 1,
                       color: anchorEl ? colors.active : colors.desActive,
@@ -556,18 +531,14 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
                 >
                   <MenuItem
                     onClick={() => onSelectChange("en")}
-                    sx={{
-                      fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-                    }}
+                  
                     className={classes.title}
                   >
                     English
                   </MenuItem>
                   <MenuItem
                     onClick={() => onSelectChange("ar")}
-                    sx={{
-                      fontFamily: pathAfterSlash === "ar" ? "Almarai" : "sans-serif",
-                    }}
+                  
                     className={classes.title}
                   >
                     العربيه

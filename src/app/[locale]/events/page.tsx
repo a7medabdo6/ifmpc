@@ -121,7 +121,6 @@ const Page = () => {
         </Grid>
       </Grid>
       <NewsletterSubscription HomeData={data} />
-      <Footer HomeData={data} />
     </Box>
   );
 };

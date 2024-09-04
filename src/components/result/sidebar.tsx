@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontWeight: 500,
-    fontFamily: "Almarai",
   },
 }));
 interface SidebarProps {
@@ -80,7 +79,7 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
   return (
     <Box sx={{ width: 250, padding: 2 }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography className={classes.title} sx={{ fontWeight: 600, fontSize: '20px', fontFamily: "Almarai" }}>
+        <Typography className={classes.title} sx={{ fontWeight: 600, fontSize: '20px' }}>
           {t(`Filter Results:`)}
         </Typography>
         <Typography
@@ -89,7 +88,6 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
           sx={{
             cursor: "pointer",
             marginTop: "7px",
-            fontFamily: "Almarai",
             marginLeft: "4px",
             transition: "color 0.3s ease",
             "&:hover": {
@@ -107,7 +105,7 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
       {/* Publications Section */}
       <Typography
         variant="subtitle1"
-        sx={{ marginTop: 2, color: '#262626', fontWeight: 600, fontFamily: "Almarai" }}
+        sx={{ marginTop: 2, color: '#262626', fontWeight: 600}}
         className={classes.title}
       >
         {t(`Publications`)}
@@ -133,7 +131,6 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
             sx={{
               "& .MuiFormControlLabel-label": {
                 color: "#476B87",
-                fontFamily: "Almarai",
               },
             }}
           />
@@ -143,7 +140,7 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
       {/* Projects Section */}
       <Typography
         variant="subtitle1"
-        sx={{ marginTop: 2, color: '#262626', fontWeight: 600, fontFamily: "Almarai" }}
+        sx={{ marginTop: 2, color: '#262626', fontWeight: 600}}
         className={classes.title}
       >
         {t(`Projects`)}
@@ -169,7 +166,6 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
             sx={{
               "& .MuiFormControlLabel-label": {
                 color: "#476B87",
-                fontFamily: "Almarai",
               },
             }}
           />
