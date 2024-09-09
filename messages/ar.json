@@ -10,8 +10,8 @@
   },
   "NavBar": {
     "home": "الرئيسية",
-    "events": "الفاعليات",
-    "training": "التدريبات",
+    "events": "مؤتمرات وندوات",
+    "training": "تدريب",
     "podcast": "بود كاست",
     "research": "البحث",
     "whoarewe": "من نحن",
@@ -63,12 +63,14 @@
   },
   "Publications": {
     "All Publications": "جميع المقالات",
+
+    "Checked Items":"تحديد الاقسام",
     "Topics": "المواضيع",
     "All": "الكل",
     "Publications": "المقالات",
     "Projects": "المشاريع",
     "Most Recent": "الأحدث",
-    "Most Popular": "الأكثر شعبية",
+    "Most Popular": " الأكثر قراءة",
     "Clear": "حذف",
     "Investment": "الاستثمار",
     "Private sectors": "القطاعات الخاصة",

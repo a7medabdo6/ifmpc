@@ -141,7 +141,7 @@ const Header: React.FC<HeaderProps> = ({
             },
           }}
         >
-          <Typography variant="h4" className={classes.title} >
+          <Typography variant="h4" className={classes.title} sx={{ color: '#262626' }}>
             {onePublication?.name} {/* عرض عنوان النشر */}
           </Typography>
         </Grid>
@@ -173,13 +173,13 @@ const Header: React.FC<HeaderProps> = ({
               ))}
             </Box>
             <Box className={classes.textContainer} sx={{ marginLeft: pathAfterSlash === 'en' ? '68px' : '0px'}}>
-              <Typography variant="subtitle1" className={classes.subtitle}>
+              <Typography variant="subtitle1" sx={{ color: '#262626' }} className={classes.subtitle}>
                 {onePublication?.author
                   .map((author: any) => author.name)
                   .join(" & ")}{" "}
                 {/* عرض أسماء المؤلفين */}
               </Typography>
-              <Typography variant="body2" className={classes.title}>
+              <Typography variant="body2" sx={{ color: '#262626' }} className={classes.title}>
                 {new Date(onePublication?.created).toLocaleDateString()}{" "}
                 {/* عرض تاريخ الإنشاء */}
               </Typography>
@@ -201,7 +201,7 @@ const Header: React.FC<HeaderProps> = ({
                 />
               </IconButton>
               <div className={classes.shareText}>
-                <Typography variant="body2" className={classes.title}
+                <Typography variant="body2" className={classes.title} sx={{ color: '#262626' }}
                 >
                   {t("share")}
                 </Typography>
@@ -245,7 +245,7 @@ const Header: React.FC<HeaderProps> = ({
                 <PrintOutlinedIcon sx={{ color: "black" }} />
               </IconButton>
               <Typography variant="body2" 
-
+sx={{ color: '#262626' }}
               className={classes.title}
               >
                 {t("Print")}
@@ -273,7 +273,7 @@ const Header: React.FC<HeaderProps> = ({
                 {/* <DownloadOutlinedIcon /> */}
               </IconButton>
               <Typography variant="body2"
-
+sx={{ color: '#262626' }}
               className={classes.title}>
                 {t("Download")}
               </Typography>

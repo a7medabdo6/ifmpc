@@ -9,6 +9,7 @@ import {
   Box,
   InputAdornment,
   IconButton,
+  Tooltip,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -79,7 +80,9 @@ const Sidebar: React.FC<SidebarProps> = ({
           variant="h6"
           sx={{
             fontWeight: "bold",
-           
+
+            color: '#262626'
+
           }}
         >
           {t(`Topics`)}
@@ -87,9 +90,9 @@ const Sidebar: React.FC<SidebarProps> = ({
         <Typography
           sx={{
             color: "#476B87",
-            cursor: "pointer", 
+            cursor: "pointer",
             "&:hover": {
-              color: "#123456", 
+              color: "#123456",
             },
           }}
           onClick={handleClear}
@@ -98,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         </Typography>
       </Box>
       <TextField
-        label="Checked Items"
+        label={t("Checked Items")}
         variant="outlined"
         fullWidth
         value={textFieldValue}
@@ -121,6 +124,13 @@ const Sidebar: React.FC<SidebarProps> = ({
           classes: {
             root: classes.formLabelRoot,
           },
+          style: {
+            textAlign: pathAfterSlash === "ar" ? "right" : "left", // Align label based on language
+            right: pathAfterSlash === "ar" ? "25px" : "auto", // Adjust position for RTL
+            left: pathAfterSlash === "ar" ? "auto" : "0", // Adjust position for LTR
+          },
+
+
         }}
       />
       <Box
@@ -151,21 +161,28 @@ const Sidebar: React.FC<SidebarProps> = ({
                   />
                 }
                 label={
-                  <Typography
-                    sx={{
-                      fontWeight: 400,
-                      fontSize: "18px",
-                      color: "#476B87",
-                      lineHeight: "22.63px",
-                     
-                    }}
-                  >
-                    <span
-                 
+                  <Tooltip title={item.label}>
+
+                    <Typography
+                      sx={{
+                        textAlign: pathAfterSlash === 'ar' ? "right" : 'left',
+                        fontWeight: 400,
+                        fontSize: "18px",
+                        color: "#476B87",
+                        lineHeight: "22.63px",
+
+                      }}
                     >
-                      {item.label}
-                    </span>
-                  </Typography>
+                      <span
+
+                      >
+                        {item.label.length > 15 ? `${item.label.substring(0, 15)}...` : item.label}
+
+                        {/* {item.label} */}
+                      </span>
+                    </Typography>
+                  </Tooltip>
+
                 }
                 style={{
                   marginRight: pathAfterSlash === "ar" ? "0px" : "16px",
@@ -178,7 +195,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   fontSize: "18px",
                   color: "#476B87",
                   lineHeight: "22.63px",
-               
+
                 }}
               >
                 <span>({item.projectCount})</span>

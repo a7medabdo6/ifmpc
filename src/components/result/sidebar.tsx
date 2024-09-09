@@ -79,7 +79,7 @@ const projects = categoriesData?.results.filter((item: any) => item.project_coun
   return (
     <Box sx={{ width: 250, padding: 2 }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography className={classes.title} sx={{ fontWeight: 600, fontSize: '20px' }}>
+        <Typography className={classes.title} sx={{ fontWeight: 600, fontSize: '20px', color: '#262626' }}>
           {t(`Filter Results:`)}
         </Typography>
         <Typography
