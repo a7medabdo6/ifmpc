@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Grid, Box } from "@mui/material";
 import Header from "@/components/research/Publications/Header";
 import ArticleSection from "@/components/research/Publications/ArticleSection";
@@ -17,6 +17,8 @@ import Navbar from "@/components/Navbar";
 import LoadingIndicator from "@/components/custom/LoadingIndicator";
 import ErrorComponent from "@/components/custom/ErrorComponent";
 import { fetchPublicationById } from "@/services/api";
+import { useReactToPrint } from "react-to-print";
+import generatePDF from 'react-to-pdf';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -79,19 +81,16 @@ const Home: React.FC = () => {
     t("Marketing"),
     t("Outdoor Sales"),
   ];
+  const componentRef = useRef<HTMLDivElement | null>(null); // Properly typed ref
+
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle:"My Document"
+  });
+
   const handleDownloadPDF = () => {
-    const doc = new jsPDF();
-
-    // Add content to the PDF
-    doc.text("Title of the PDF", 10, 10);
-    doc.text(articleContent, 10, 20);
-
-    // Example of adding an image to the PDF
-    // const imageData = "data:image/png;base64,..."; // Base64 image data
-    // doc.addImage(imageData, "PNG", 10, 30, 180, 160);
-
-    // Save the PDF
-    doc.save("downloaded-file.pdf");
+    generatePDF(componentRef, {filename: 'page.pdf'})
   };
   if (loading) return <LoadingIndicator />;
   if (fetchError) return <ErrorComponent message={fetchError} />;
@@ -100,6 +99,7 @@ const Home: React.FC = () => {
       <Navbar />
 
       <Box
+      ref={componentRef}
         className={classes.content}
         sx={{
           paddingRight: {
@@ -113,6 +113,7 @@ const Home: React.FC = () => {
         }}
       >
         <Header
+        handlePrint={handlePrint}
           handleDownloadPDF={handleDownloadPDF}
           onePublication={onePublication}
         />

@@ -112,7 +112,7 @@ const OurPartners: React.FC = () => {
           },
         }}
       >
-        {partners?.results.map((partner) => (
+        {partners?.results?.map((partner) => (
           <Grid
             key={partner.id}
             item

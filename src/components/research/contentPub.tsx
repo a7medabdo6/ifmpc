@@ -9,15 +9,19 @@ interface ContentPubProps {
   handlePrevious: any;
   limit: any;
   setOffset:any;
-
+  tabClicks:any;
+  setTabClicks:any;
   MostRecent: any; // Replace Project[] with the actual type of MostRecent
   MostPobular: any; // Replace Project[] with the actual type of MostPobular
 }
 
-const ContentPub: React.FC<ContentPubProps> = ({ MostRecent,setOffset, MostPobular, handleNext, handlePrevious,limit, count }) => {
+const ContentPub: React.FC<ContentPubProps> = ({  tabClicks,
+  setTabClicks, MostRecent,setOffset, MostPobular, handleNext, handlePrevious,limit, count }) => {
   return (
     <div style={{ backgroundColor: "white" }}>
       <BasicTabs
+       setTabClicks={setTabClicks} 
+       tabClicks={tabClicks}
         tabone={<MostRecentContentPublications setOffset={setOffset} projects={MostRecent} limit={limit} handleNext={handleNext} handlePrevious={handlePrevious} count={count}/>}
         tabonetitle="Most Recent"
         tabtwo={<MostPobularContentPublications setOffset={setOffset} projects={MostPobular} limit={limit} handleNext={handleNext} handlePrevious={handlePrevious} count={count} />}

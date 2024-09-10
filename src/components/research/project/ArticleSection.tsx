@@ -12,7 +12,7 @@ const ArticleSection: React.FC<{ title: string; content: any }> = ({
             color:'#262626'
 
             
-           }} // Apply Almarai font here
+           }} 
 
     >{title}</Typography>
     <ArticleContent content={content} />

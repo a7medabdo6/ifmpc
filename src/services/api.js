@@ -205,6 +205,33 @@ export const fetchCategories = async (lng) => {
   }
 };
 
+export const fetchQuestions = async (lng) => {
+  const apiUrl = `${baseUrl}/contacts/questions/`;
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Accept-Language": lng,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching categories:", error.message);
+    return {
+      props: {
+        data: {},
+      },
+    };
+  }
+};
+
 export const fetchHome = async (lng) => {
   const apiUrl = `${baseUrl}/home/`;
   try {

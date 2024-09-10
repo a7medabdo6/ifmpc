@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import {
   Typography,
@@ -11,6 +9,12 @@ import {
   Box,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useTranslations } from "next-intl";
+import { useAppSelector } from "@/lib/hooks";
+import Image from "next/image";
+import imageDownload from "../../../../public/assets/images/download.png";
+import imageShare from "../../../../public/assets/images/shareIcon.png";
+import { LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -19,11 +23,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Triangle from "./Triangle"; // Import the Triangle component
 import XIcon from "@mui/icons-material/X";
-import { useTranslations } from "next-intl";
-import { useAppSelector } from "@/lib/hooks";
-import Image from "next/image";
-import imageDownload from "../../../../public/assets/images/download.png";
-import imageShare from "../../../../public/assets/images/shareIcon.png";
 
 const useStyles = makeStyles({
   subtitle: {
@@ -31,24 +30,23 @@ const useStyles = makeStyles({
   },
   iconWithText: {
     paddingRight: "14px",
-    paddingTop: "0px", // Default value for small screens
+    paddingTop: "0px",
     display: "flex",
     alignItems: "center",
     gap: "5px",
-    position: "relative", // Ensure the position is relative for the arrow to be positioned absolutely
+    position: "relative",
     "@media (min-width: 960px)": {
-      // Apply styles for screens medium and up
       paddingTop: "0px !important",
     },
   },
   active: {
-    border: "2px solid #476B87", // Add border for the active state
+    border: "2px solid #476B87",
     borderRadius: "4px",
     "& .MuiTypography-root": {
-      color: "#476B87", // Change text color for active state
+      color: "#476B87",
     },
     "& .MuiSvgIcon-root": {
-      color: "#476B87", // Change icon color for active state
+      color: "#476B87",
     },
   },
   container: {
@@ -77,24 +75,24 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     gap: "10px",
-    // marginRight: "15px",
   },
   textContainer: {
     display: "flex",
     flexDirection: "column",
   },
-  title: {
-  },
+  title: {},
 });
 
 interface HeaderProps {
   handleDownloadPDF: () => void;
   onePublication: any;
+  handlePrint: any;
 }
 
 const Header: React.FC<HeaderProps> = ({
   handleDownloadPDF,
   onePublication,
+  handlePrint,
 }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -116,6 +114,9 @@ const Header: React.FC<HeaderProps> = ({
     setAnchorEl(null);
     setActiveIcon(null);
   };
+
+  // Define the URL to share
+  const shareUrl = window.location.href;
 
   return (
     <header>
@@ -142,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({
           }}
         >
           <Typography variant="h4" className={classes.title} sx={{ color: '#262626' }}>
-            {onePublication?.name} {/* عرض عنوان النشر */}
+            {onePublication?.name}
           </Typography>
         </Grid>
 
@@ -155,7 +156,7 @@ const Header: React.FC<HeaderProps> = ({
           alignItems={{ xs: "flex-start", md: "center" }}
         >
           <Grid item xs={12} md={9} display="flex">
-          <Box className={classes.avatarContainer} sx={{
+            <Box className={classes.avatarContainer} sx={{
               position: 'relative', display: 'flex', alignItems: 'center', marginRight: pathAfterSlash === 'en' ? "15px" : '68px', marginLeft: pathAfterSlash === 'ar' ? '15px' : '0px'
             }}>
               {onePublication?.author.map((author: any, index: number) => (
@@ -165,23 +166,21 @@ const Header: React.FC<HeaderProps> = ({
                   alt={author?.name}
                   sx={{
                     position: 'absolute',
-                    left: `${index * 30}px`, // يتحكم في المسافة الأفقية بين الصور
+                    left: `${index * 30}px`,
                     zIndex: index,
-                    border: '2px solid white', // إضافة حد للتفريق بين الصور
+                    border: '2px solid white',
                   }}
-                /> /* عرض صور المؤلفين */
+                />
               ))}
             </Box>
-            <Box className={classes.textContainer} sx={{ marginLeft: pathAfterSlash === 'en' ? '68px' : '0px'}}>
+            <Box className={classes.textContainer} sx={{ marginLeft: pathAfterSlash === 'en' ? '68px' : '0px' }}>
               <Typography variant="subtitle1" sx={{ color: '#262626' }} className={classes.subtitle}>
                 {onePublication?.author
                   .map((author: any) => author.name)
-                  .join(" & ")}{" "}
-                {/* عرض أسماء المؤلفين */}
+                  .join(" & ")}
               </Typography>
               <Typography variant="body2" sx={{ color: '#262626' }} className={classes.title}>
-                {new Date(onePublication?.created).toLocaleDateString()}{" "}
-                {/* عرض تاريخ الإنشاء */}
+                {new Date(onePublication?.created).toLocaleDateString()}
               </Typography>
             </Box>
           </Grid>
@@ -194,20 +193,18 @@ const Header: React.FC<HeaderProps> = ({
             >
               <IconButton onClick={(e) => handleClick(e, "share")}>
                 <Image
-                  src={imageShare} // Path to your image
+                  src={imageShare}
                   alt="Description of the image"
-                  width={18} // Image width
-                  height={18} // Image height
+                  width={18}
+                  height={18}
                 />
               </IconButton>
               <div className={classes.shareText}>
-                <Typography variant="body2" className={classes.title} sx={{ color: '#262626' }}
-                >
+                <Typography variant="body2" className={classes.title} sx={{ color: '#262626' }}>
                   {t("share")}
                 </Typography>
               </div>
-              {open && activeIcon === "share" && <Triangle color="#476B8733" />}{" "}
-              {/* Add Triangle conditionally */}
+              {open && activeIcon === "share" && <Triangle color="#476B8733" />}
               <Menu
                 disableScrollLock={true}
                 anchorEl={anchorEl}
@@ -217,21 +214,33 @@ const Header: React.FC<HeaderProps> = ({
                 PaperProps={{
                   style: {
                     maxHeight: 200,
-                    width: "20ch",
+                    width: "25ch",
                   },
                 }}
               >
                 <MenuItem onClick={handleClose} className={classes.menuItem}>
-                  <XIcon />
+                <TwitterShareButton url={shareUrl} className={classes.menuItem}>
+                <XIcon />
                   Share on Twitter
+
+                  </TwitterShareButton>
+                 
                 </MenuItem>
                 <MenuItem onClick={handleClose} className={classes.menuItem}>
-                  <LinkedInIcon />
-                  Share on LinkedIn
+                <LinkedinShareButton url={shareUrl} className={classes.menuItem}>
+                <LinkedInIcon />
+                Share on LinkedIn
+
+                  </LinkedinShareButton>
+                 
                 </MenuItem>
                 <MenuItem onClick={handleClose} className={classes.menuItem}>
-                  <WhatsAppIcon />
-                  Share on WhatsApp
+             
+                  <WhatsappShareButton url={shareUrl} className={classes.menuItem}>
+                    <WhatsAppIcon  />
+                    Share on WhatsApp
+
+                  </WhatsappShareButton>
                 </MenuItem>
               </Menu>
             </Grid>
@@ -241,13 +250,15 @@ const Header: React.FC<HeaderProps> = ({
                 activeIcon === "print" ? classes.active : ""
               }`}
             >
-              <IconButton onClick={() => setActiveIcon("print")}>
+              <IconButton 
+                onClick={() => {
+                  handlePrint();
+                  setActiveIcon("print");
+                }}
+              >
                 <PrintOutlinedIcon sx={{ color: "black" }} />
               </IconButton>
-              <Typography variant="body2" 
-sx={{ color: '#262626' }}
-              className={classes.title}
-              >
+              <Typography variant="body2" sx={{ color: '#262626' }} className={classes.title}>
                 {t("Print")}
               </Typography>
             </Grid>
@@ -263,18 +274,14 @@ sx={{ color: '#262626' }}
                   setActiveIcon("download");
                 }}
               >
-                {" "}
                 <Image
-                  src={imageDownload} // Path to your image
+                  src={imageDownload}
                   alt="Description of the image"
-                  width={18} // Image width
-                  height={18} // Image height
+                  width={18}
+                  height={18}
                 />
-                {/* <DownloadOutlinedIcon /> */}
               </IconButton>
-              <Typography variant="body2"
-sx={{ color: '#262626' }}
-              className={classes.title}>
+              <Typography variant="body2" sx={{ color: '#262626' }} className={classes.title}>
                 {t("Download")}
               </Typography>
             </Grid>

@@ -53,8 +53,10 @@ const RelatedTopics = () => {
     <div>
       <Typography
         variant="h6"
-        sx={{  fontWeight: "bold" }} // Apply Almarai font here
-        className={classes.typography}
+        sx={{  fontWeight: "bold" ,
+          color:'#262626'
+        }} 
+                className={classes.typography}
       >
         {t("Related Projects")}
       </Typography>

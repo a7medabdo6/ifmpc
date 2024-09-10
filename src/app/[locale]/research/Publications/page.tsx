@@ -77,6 +77,7 @@ const Page = () => {
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
   const [categories, setCategories] = useState<Category[]>([]);
   const { data } = useAppSelector((state) => state.home);
+  const [tabClicks, setTabClicks] = React.useState<number[]>([0, 0, 0]);
 
   // Specify types for state variables
   const [MostRecent, setMostRecent] = useState<Publication[]>([]);
@@ -93,7 +94,7 @@ const Page = () => {
   const [count, setCount] = useState<number>(0);
 
   const [offset, setOffset] = useState(0);
-  const limit = 2;
+  const limit = 10;
   useEffect(() => {
     const loadMostRecent = async () => {
       try {
@@ -111,7 +112,7 @@ const Page = () => {
     };
 
     loadMostRecent();
-  }, [lng,offset]);
+  }, [lng,offset,tabClicks]);
 
   useEffect(() => {
     const loadMostPobular = async () => {
@@ -132,7 +133,7 @@ const Page = () => {
     };
 
     loadMostPobular();
-  }, [lng,offset]);
+  }, [lng,offset,tabClicks]);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -299,6 +300,8 @@ const Page = () => {
         </Grid>
         <Grid item xs={12} md={9} className={classes.content}>
           <ContentPub
+           tabClicks={tabClicks}
+           setTabClicks={setTabClicks}
             setOffset={setOffset}
 
             limit={limit}
