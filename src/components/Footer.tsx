@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     // paddingLeft: "130px",
     // paddingRight: "130px",
-    // padding: 4,
+    padding: 4,
   },
   gridContainer: {
     // borderBottom: "1px solid #CCCBCB",
