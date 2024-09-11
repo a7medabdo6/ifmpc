@@ -24,6 +24,7 @@ import { useAppSelector } from "@/lib/hooks";
 import Image from "next/image";
 import imageDownload from "../../../../public/assets/images/download.png";
 import imageShare from "../../../../public/assets/images/shareIcon.png";
+import { LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 
 const useStyles = makeStyles({
   subtitle: {
@@ -90,9 +91,11 @@ const useStyles = makeStyles({
 interface HeaderProps {
   handleDownloadPDF: () => void;
   oneProject: any;
+  handlePrint: any;
+
 }
 
-const Header: React.FC<HeaderProps> = ({ handleDownloadPDF, oneProject }) => {
+const Header: React.FC<HeaderProps> = ({ handleDownloadPDF, oneProject,  handlePrint}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [activeIcon, setActiveIcon] = React.useState<string | null>(null);
@@ -113,6 +116,7 @@ const Header: React.FC<HeaderProps> = ({ handleDownloadPDF, oneProject }) => {
     setAnchorEl(null);
     setActiveIcon(null);
   };
+  const shareUrl = window.location.href;
 
   return (
     <header>
@@ -214,21 +218,33 @@ const Header: React.FC<HeaderProps> = ({ handleDownloadPDF, oneProject }) => {
                 PaperProps={{
                   style: {
                     maxHeight: 200,
-                    width: "20ch",
+                    width: "25ch",
                   },
                 }}
               >
-                <MenuItem onClick={handleClose} className={classes.menuItem} sx={{ color: '#262626' }}>
-                  <XIcon />
+                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                <TwitterShareButton url={shareUrl} className={classes.menuItem}>
+                <XIcon />
                   Share on Twitter
+
+                  </TwitterShareButton>
+                 
                 </MenuItem>
-                <MenuItem onClick={handleClose} className={classes.menuItem} sx={{ color: '#262626' }}>
-                  <LinkedInIcon />
-                  Share on LinkedIn
+                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                <LinkedinShareButton url={shareUrl} className={classes.menuItem}>
+                <LinkedInIcon />
+                Share on LinkedIn
+
+                  </LinkedinShareButton>
+                 
                 </MenuItem>
-                <MenuItem onClick={handleClose} className={classes.menuItem} sx={{ color: '#262626' }}>
-                  <WhatsAppIcon />
-                  Share on WhatsApp
+                <MenuItem onClick={handleClose} className={classes.menuItem}>
+             
+                  <WhatsappShareButton url={shareUrl} className={classes.menuItem}>
+                    <WhatsAppIcon  />
+                    Share on WhatsApp
+
+                  </WhatsappShareButton>
                 </MenuItem>
               </Menu>
             </Grid>
@@ -237,7 +253,10 @@ const Header: React.FC<HeaderProps> = ({ handleDownloadPDF, oneProject }) => {
               className={`${classes.iconWithText} ${activeIcon === "print" ? classes.active : ""
                 }`}
             >
-              <IconButton onClick={() => setActiveIcon("print")}>
+              <IconButton  onClick={() => {
+                  handlePrint();
+                  setActiveIcon("print");
+                }}>
                 <PrintOutlinedIcon sx={{ color: "black" }} />
               </IconButton>
               <Typography variant="body2"  sx={{ color: '#262626' }}>
