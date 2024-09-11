@@ -5,13 +5,11 @@ import { makeStyles } from '@mui/styles';
 import { useAppSelector } from '@/lib/hooks';
 import { fetchQuestions } from '@/services/api';
 
-// Define your styles
 const useStyles = makeStyles((theme) => ({
   faqContainer: {
     backgroundColor: '#f5f5f5',
     paddingTop: '2rem',
     paddingBottom: '2rem',
-
   },
   faqItem: {
     display: 'flex',
@@ -24,13 +22,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
 }));
+
+// Define the Event interface
+interface Event {
+  id: number;
+  name: string; // Define the name property
+  // Add other properties as needed
+}
+
 interface EventsResponse {
   results: Event[];
-  // أضف خصائص أخرى حسب الحاجة
+  // Add other properties as needed
 }
+
 const FAQSection = () => {
   const classes = useStyles();
-  const faqs = Array.from({ length: 10 }, (_, i) => `Frequently Asked Question ${i + 1}`);
   const [Events, setEvents] = useState<EventsResponse | null>(null);
   const { data } = useAppSelector((state) => state.home);
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
@@ -39,7 +45,6 @@ const FAQSection = () => {
   const [error, setError] = useState<string | null>(null);
 
   const lng = pathAfterSlash;
-console.log(Events);
 
   useEffect(() => {
     const loadEvents = async () => {
@@ -60,27 +65,29 @@ console.log(Events);
     loadEvents();
   }, [lng]);
 
-
   return (
-    <Box className={classes.faqContainer} sx={{
-      paddingLeft: {
-        xs: '24px',
-        md: '130px'
-      },
-      paddingRight: {
-        xs: '24px',
-        md: '130px'
-      },
-    }}>
-      <Box >
-        <Typography sx={{color:'#262626'}} variant="h6" gutterBottom>
+    <Box
+      className={classes.faqContainer}
+      sx={{
+        paddingLeft: {
+          xs: '24px',
+          md: '130px',
+        },
+        paddingRight: {
+          xs: '24px',
+          md: '130px',
+        },
+      }}
+    >
+      <Box>
+        <Typography sx={{ color: '#262626' }} variant="h6" gutterBottom>
           Frequently Asked Questions
         </Typography>
         <Grid container spacing={2}>
-          {faqs.map((faq, index) => (
+          {Events?.results.map((item, index) => (
             <Grid item xs={12} md={6} key={index} className={classes.faqItem}>
-              <Typography sx={{color:'#262626'}}>{faq}</Typography>
-              <IconButton sx={{color:'#262626'}}>
+              <Typography sx={{ color: '#262626' }}>{item?.name}</Typography>
+              <IconButton sx={{ color: '#262626' }}>
                 <AddIcon />
               </IconButton>
             </Grid>
