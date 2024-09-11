@@ -19,6 +19,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useAppSelector } from "@/lib/hooks";
+import { useTranslations } from "next-intl";
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -75,6 +76,7 @@ const SocialMediaIcon: React.FC<{ icon: React.ElementType }> = ({
   icon: IconComponent,
 }) => {
   const classes = useStyles();
+
   return (
     <Box className={classes.socialMediaIcon}>
       <IconComponent sx={{ color: "white", fontSize: "13px" }} />
@@ -148,6 +150,7 @@ const ContactInformation: React.FC<ContactInformationProps> = ({
 }) => {
   const classes = useStyles();
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
+  const t = useTranslations("contactUs");
 
   const getLocationDetails = async (language: string) => {
     try {
@@ -189,27 +192,27 @@ const ContactInformation: React.FC<ContactInformationProps> = ({
   return (
     <Box className={classes.container}>
       <Typography className={classes.title} sx={{color:'#262626'}} variant="h6" gutterBottom>
-        Contact Information
+      {t("contactInformation")}
       </Typography>
       <List>
         <ListItem className={classes.listItem}>
           <ListItemIcon className={classes.listIcon}>
             <LocationOnOutlinedIcon />
           </ListItemIcon>
-          <ListItemText primary={`Country (EN): ${countryEn}`} sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626'  }} />
+          <ListItemText primary={`${t("Country")} ${countryEn}`} sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626'  }} />
         </ListItem>
 
         <ListItem className={classes.listItem}>
           <ListItemIcon className={classes.listIcon}>
             <PhoneOutlinedIcon />
           </ListItemIcon>
-          <ListItemText primary="Here is the Phone Number of IFPMC" sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626'  }}/>
+          <ListItemText primary={t("Here is the Phone Number of IFPMC")} sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626'  }}/>
         </ListItem>
         <ListItem className={classes.listItem}>
           <ListItemIcon className={classes.listIcon}>
             <EmailOutlinedIcon />
           </ListItemIcon>
-          <ListItemText primary="Here is the Email of IFPMC"             sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626' }} // Align the text to the end
+          <ListItemText primary={t("Here is the Email of IFPMC" )}            sx={{ textAlign:pathAfterSlash === 'ar' ? "right":"left",color:'#262626' }} // Align the text to the end
  />
         </ListItem>
       </List>

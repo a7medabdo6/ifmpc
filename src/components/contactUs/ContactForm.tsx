@@ -3,21 +3,39 @@ import { TextField, Typography, Box, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import CustomButton from '../custom/CustomButton';
 import { colors } from '@/utils/colors';
+import { useTranslations } from 'next-intl';
+import { useAppSelector } from '@/lib/hooks';
+import { CacheProvider } from '@emotion/react';
+import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { prefixer } from 'stylis';
+import createCache from '@emotion/cache';
+
+const theme = (outerTheme?: Theme) =>
+  createTheme({
+    direction: 'rtl',
+    palette: {
+      mode: outerTheme?.palette?.mode || 'light',
+    },
+  });
+
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [prefixer, rtlPlugin],
+});
 
 const useStyles = makeStyles({
   textField: {
     '& .MuiInputBase-root': {
       height: '42px',
     },
-  
   },
   title: {
     fontWeight: 600,
     marginBottom: '15px',
-    color:'#262626' 
+    color: '#262626',
   },
-  multiline: {
-  }
+  multiline: {},
 });
 
 interface ContactFormProps {
@@ -52,6 +70,42 @@ const ContactForm: React.FC<ContactFormProps> = ({
   buttonText
 }) => {
   const classes = useStyles();
+  const t = useTranslations('contactUs');
+  const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
+  const isArabic = pathAfterSlash === 'ar';
+
+  const renderTextField = (
+    label: string,
+    value: string,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    multiline: boolean = false,
+    rows: number = 1
+  ) => {
+    const textField = (
+      <TextField
+        className={multiline ? classes.multiline : classes.textField}
+        fullWidth
+        label={label}
+        variant="outlined"
+        value={value}
+        onChange={onChange}
+        multiline={multiline}
+        rows={rows}
+      />
+    );
+
+    if (isArabic) {
+      return (
+        <CacheProvider value={cacheRtl}>
+          <ThemeProvider theme={theme}>
+            <div dir="rtl">{textField}</div>
+          </ThemeProvider>
+        </CacheProvider>
+      );
+    }
+
+    return textField;
+  };
 
   return (
     <Box sx={{ backgroundColor: '#fff', padding: '3.5rem', borderRadius: '8px' }}>
@@ -61,56 +115,19 @@ const ContactForm: React.FC<ContactFormProps> = ({
       <form noValidate autoComplete="off">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <TextField
-              className={classes.textField}
-              fullWidth
-              label="First Name"
-              variant="outlined"
-              value={firstName}
-              onChange={onFirstNameChange}
-            />
+            {renderTextField(t('firstName'), firstName, onFirstNameChange)}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              className={classes.textField}
-              fullWidth
-              label="Last Name"
-              variant="outlined"
-              value={lastName}
-              onChange={onLastNameChange}
-            />
+            {renderTextField(t('lastName'), lastName, onLastNameChange)}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.textField}
-              fullWidth
-              label="Phone Number"
-              variant="outlined"
-              value={phoneNumber}
-              onChange={onPhoneNumberChange}
-            />
+            {renderTextField(t('phoneNumber'), phoneNumber, onPhoneNumberChange)}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.textField}
-              fullWidth
-              label="Email Address"
-              variant="outlined"
-              value={emailAddress}
-              onChange={onEmailAddressChange}
-            />
+            {renderTextField(t('emailAddress'), emailAddress, onEmailAddressChange)}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.multiline}
-              fullWidth
-              label="Message"
-              multiline
-              rows={4}
-              variant="outlined"
-              value={message}
-              onChange={onMessageChange}
-            />
+            {renderTextField(t('writeMessage'), message, onMessageChange, true, 4)}
           </Grid>
           <Grid item xs={12}>
             <CustomButton
@@ -121,7 +138,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               backgroundColor={colors.active}
               borderRadius="4px"
             >
-              {buttonText}
+              {t('contactWithUs')}
             </CustomButton>
           </Grid>
         </Grid>
