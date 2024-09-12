@@ -84,9 +84,34 @@ const Home: React.FC = () => {
   const componentRef = useRef<HTMLDivElement | null>(null); // Properly typed ref
 
 
+ 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    documentTitle:"My Document"
+    documentTitle: "My Document",
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      body {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      p {
+        margin: 5px 0;
+      }
+      .MuiContainer-root {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+      .MuiGrid-root {
+        padding: 0 !important;
+      }
+    `,
   });
 
   const handleDownloadPDF = () => {
@@ -99,7 +124,6 @@ const Home: React.FC = () => {
       <Navbar />
 
       <Box
-      ref={componentRef}
         className={classes.content}
         sx={{
           paddingRight: {
@@ -134,6 +158,8 @@ const Home: React.FC = () => {
             }}
           >
             <ArticleSection
+                        componentRef={componentRef}
+
               title={t("Article")}
               content={pathAfterSlash === "ar" ? onePublication?.content_ar : onePublication?.content_en }
             />
