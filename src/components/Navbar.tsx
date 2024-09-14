@@ -114,7 +114,9 @@ const Navbar: React.FC = () => {
 const parts = url.split('/'); // Split the URL by '/'
 const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ثاني '/'
 
-
+const routerHome =()=>{
+  router.replace('/')
+}
   const onSelectChange = (newLocale: string) => {
     startTransition(() => {
       
@@ -319,10 +321,11 @@ const result = parts.slice(2).join('/'); // تجميع الأجزاء بعد ث�
         }}
       >
         <Typography
+        onClick={routerHome}
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" },cursor:'pointer' }}
         >
           <Image src={MyAppLogo} alt="Logo" width={243} height={52} />
         </Typography>

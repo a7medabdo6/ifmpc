@@ -159,7 +159,7 @@ const Header: React.FC<HeaderProps> = ({
             <Box className={classes.avatarContainer} sx={{
               position: 'relative', display: 'flex', alignItems: 'center', marginRight: pathAfterSlash === 'en' ? "15px" : '68px', marginLeft: pathAfterSlash === 'ar' ? '15px' : '0px'
             }}>
-              {onePublication?.author.map((author: any, index: number) => (
+              {onePublication?.author?.map((author: any, index: number) => (
                 <Avatar
                   key={author?.id}
                   src={author?.image}
