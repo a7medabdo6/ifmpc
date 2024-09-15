@@ -176,7 +176,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       <span
 
                       >
-                        {item.label.length > 15 ? `${item.label.substring(0, 15)}...` : item.label}
+                        {item.label.length > 15 ? `${item.label.substring(0, 12)}...` : item.label}
 
                         {/* {item.label} */}
                       </span>

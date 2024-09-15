@@ -9,6 +9,7 @@ const nextConfig = {
       "ifpmcf.s3.amazonaws.com",
       "buffer.com",
       "i.ytimg.com",
+      'www.kptc.com.kw',
       "encrypted-tbn0.gstatic.com", // Add the new domain here
     ],
   },

@@ -7,7 +7,7 @@ const ArticleSection: React.FC<{ title: string; content: any; componentRef:any; 
   content,
   componentRef
 }) => (
-  <section ref={componentRef}>
+  <section >
     <Typography variant="h6"
           sx={{  fontWeight: "bold",
             color:'#262626'
@@ -16,7 +16,7 @@ const ArticleSection: React.FC<{ title: string; content: any; componentRef:any; 
            }} 
 
     >{title}</Typography>
-    <ArticleContent content={content} />
+    <ArticleContent content={content} componentRef={componentRef} />
     {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
   </section>
 );

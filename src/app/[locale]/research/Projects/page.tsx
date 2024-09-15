@@ -95,6 +95,7 @@ const Page = () => {
         setLoading(false);
       }
     };
+    if( lng)
 
     loadMostRecent();
   }, [lng,offset,tabClicks]);
@@ -115,6 +116,7 @@ const Page = () => {
         setLoading(false);
       }
     };
+    if( lng)
 
     loadMostPobular();
   }, [lng,offset,tabClicks]);
