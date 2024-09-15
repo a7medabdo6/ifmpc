@@ -23,7 +23,7 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
-import MyAppLogo from "../assets/images/logo.svg"; // Adjust the path accordingly
+import MyAppLogo from "../assets/images/logo.png"; // Adjust the path accordingly
 import Image from "next/image";
 import { colors } from "../utils/colors";
 import { useTranslations } from "next-intl";
