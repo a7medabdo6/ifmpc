@@ -110,12 +110,15 @@ const Page = () => {
         setLoading(false);
       }
     };
+    if( lng)
 
     loadMostRecent();
   }, [lng,offset,tabClicks]);
 
   useEffect(() => {
     const loadMostPobular = async () => {
+      console.log("44444");
+      
       try {
         const data = await fetchMostPopularPublications(lng, offset, limit);
         setMostPobular(data?.results || []);
@@ -131,7 +134,7 @@ const Page = () => {
         setLoading(false);
       }
     };
-
+if( lng)
     loadMostPobular();
   }, [lng,offset,tabClicks]);
 

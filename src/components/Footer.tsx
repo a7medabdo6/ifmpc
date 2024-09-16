@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Grid, Typography, Link } from "@mui/material";
 import { Facebook, Twitter, YouTube, LinkedIn } from "@mui/icons-material";
-import MyAppLogo from "../assets/images/logoWhite.png"; // Adjust the path accordingly
+import MyAppLogo from "../assets/images/logo.png"; // Adjust the path accordingly
 import Image from "next/image";
 import { colors } from "../utils/colors";
 import XIcon from "@mui/icons-material/X";

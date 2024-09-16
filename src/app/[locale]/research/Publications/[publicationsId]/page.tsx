@@ -18,7 +18,7 @@ import LoadingIndicator from "@/components/custom/LoadingIndicator";
 import ErrorComponent from "@/components/custom/ErrorComponent";
 import { fetchPublicationById } from "@/services/api";
 import { useReactToPrint } from "react-to-print";
-import generatePDF from 'react-to-pdf';
+import { generatePDF } from "@/utils/generatePDF";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -114,9 +114,7 @@ const Home: React.FC = () => {
     `,
   });
 
-  const handleDownloadPDF = () => {
-    generatePDF(componentRef, {filename: 'page.pdf'})
-  };
+ 
   if (loading) return <LoadingIndicator />;
   if (fetchError) return <ErrorComponent message={fetchError} />;
   return (
@@ -138,7 +136,7 @@ const Home: React.FC = () => {
       >
         <Header
         handlePrint={handlePrint}
-          handleDownloadPDF={handleDownloadPDF}
+          handleDownloadPDF={generatePDF}
           onePublication={onePublication}
         />
         <Grid

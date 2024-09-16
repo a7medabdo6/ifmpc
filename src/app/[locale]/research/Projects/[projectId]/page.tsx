@@ -18,6 +18,7 @@ import LoadingIndicator from "@/components/custom/LoadingIndicator";
 import ErrorComponent from "@/components/custom/ErrorComponent";
 import { useReactToPrint } from "react-to-print";
 import generatePDF from "react-to-pdf";
+import { generatePDFProject } from "@/utils/generatePDF";
 const useStyles = makeStyles((theme) => ({
   content: {
     paddingBottom: "24px", // تعيين تباعد داخلي للمحتوى
@@ -87,7 +88,7 @@ const Home: React.FC = () => {
   const componentRef = useRef<HTMLDivElement | null>(null); // Properly typed ref
 
 
-  
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "My Document",
@@ -117,21 +118,19 @@ const Home: React.FC = () => {
     `,
   });
 
-  
 
-  const handleDownloadPDF = () => {
-    generatePDF(componentRef, { filename: 'page.pdf' })
-  };
+
+
   if (loading) return <LoadingIndicator />;
   if (fetchError) return <ErrorComponent message={fetchError} />;
   return (
     <Box className={classes.bigContainer} sx={{ backgroundColor: "#ffffff" }}>
       <Navbar />
 
-      <Box       
- className={classes.content}>
+      <Box
+        className={classes.content}>
         <Header handlePrint={handlePrint}
-          handleDownloadPDF={handleDownloadPDF} oneProject={oneProject} />{" "}
+          handleDownloadPDF={generatePDFProject} oneProject={oneProject} />{" "}
         <Grid
           container
           spacing={3}
@@ -139,7 +138,7 @@ const Home: React.FC = () => {
         >
           <Grid item xs={12} md={9} sx={{ paddingRight: "100px" }}>
             <ArticleSection
-            componentRef={componentRef}
+              componentRef={componentRef}
               title={t("Article")}
               content={pathAfterSlash === "ar" ? oneProject?.content_ar : oneProject?.content_en}
             />
