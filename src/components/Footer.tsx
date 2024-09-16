@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: "5px",
     backgroundColor: colors.active,
     color: "black",
@@ -85,8 +85,8 @@ const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ logo }) => {
         src={logo}
         alt="Social Media Icon"
         className={classes.logoImage}
-        width={50} // تحديد العرض
-        height={50} // تحديد الارتفاع
+        width={40} // تحديد العرض
+        height={40} // تحديد الارتفاع
       />
       {/* <img src={logo} alt="Social Media Icon" className={classes.logoImage} /> */}
     </Box>
