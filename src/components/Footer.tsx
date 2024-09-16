@@ -54,9 +54,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 20,
-    height: 20,
-    borderRadius: "0%",
+    width: 50,
+    height: 50,
+    borderRadius: "5px",
     backgroundColor: colors.active,
     color: "black",
     "&:hover": {
@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
   },
   logoImage: {
-    width: "60%",
-    height: "60%",
+    width: "80%",
+    height: "80%",
     objectFit: "cover",
   },
 }));
@@ -85,8 +85,8 @@ const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ logo }) => {
         src={logo}
         alt="Social Media Icon"
         className={classes.logoImage}
-        width={20} // تحديد العرض
-        height={20} // تحديد الارتفاع
+        width={50} // تحديد العرض
+        height={50} // تحديد الارتفاع
       />
       {/* <img src={logo} alt="Social Media Icon" className={classes.logoImage} /> */}
     </Box>
@@ -145,8 +145,8 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
       <Box
         component="footer"
         sx={{
-          paddingTop:'40px',
-          paddingBottom:'40px',
+          paddingTop: "40px",
+          paddingBottom: "40px",
           paddingLeft: {
             xs: "24px",
             md: "130px",
@@ -203,7 +203,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                   width: "75%",
                   // paddingRight: pathAfterSlash === "ar" ? "24px" : "0px",
                   textAlign: pathAfterSlash === "ar" ? "right" : "left",
-              
                 }}
               >
                 {HomeData?.web_site_settings?.footer_short_desc}
@@ -220,12 +219,9 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
               <Typography
                 variant="h6"
                 gutterBottom
-                
                 className={classes.title}
                 sx={{
-                  fontSize:'18px',
-
-              
+                  fontSize: "18px",
                 }}
               >
                 {t("Categories")}
@@ -237,7 +233,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                     variant="body2"
                     sx={{
                       marginBottom: "7px",
-                     
                     }}
                     className={classes.title}
                   >
@@ -256,7 +251,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                   variant="body2"
                   sx={{
                     marginBottom: "10px",
-                  
                   }}
                   className={classes.title}
                 >
@@ -276,9 +270,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 gutterBottom
                 className={classes.title}
                 sx={{
-                  fontSize:'19px',
-
-               
+                  fontSize: "19px",
                 }}
               >
                 {t("Quick Links")}
@@ -287,7 +279,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-                 
                 }}
                 className={classes.title}
               >
@@ -299,7 +290,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-                 
                 }}
                 className={classes.title}
               >
@@ -315,7 +305,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 variant="body2"
                 sx={{
                   marginBottom: "7px",
-             
                 }}
                 className={classes.title}
               >
@@ -340,8 +329,7 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
                 gutterBottom
                 className={classes.title}
                 sx={{
-                  fontSize:'18px',
-
+                  fontSize: "18px",
                 }}
               >
                 {t("Social Media")}
@@ -371,7 +359,6 @@ const Footer: React.FC<FooterProps> = ({ HomeData }) => {
           sx={{
             width: "100%",
             padding: "10px",
-           
           }}
           variant="body2"
         >
