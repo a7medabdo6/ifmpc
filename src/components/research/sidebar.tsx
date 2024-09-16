@@ -45,7 +45,9 @@ interface SidebarProps {
   checkedItems: { [key: number]: boolean };
   setCheckedItems: (items: { [key: number]: boolean }) => void;
   textFieldValue: string;
-  handleToggle: (item: Item) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleToggle: (
+    item: Item
+  ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
   setTextFieldValue: (value: string) => void;
   handleClear: () => void;
   items: Item[];
@@ -59,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   textFieldValue,
   handleToggle,
   setTextFieldValue,
-  handleClear
+  handleClear,
 }) => {
   const classes = useStyles();
   const t = useTranslations("Publications");
@@ -81,8 +83,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           sx={{
             fontWeight: "bold",
 
-            color: '#262626'
-
+            color: "#262626",
           }}
         >
           {t(`Topics`)}
@@ -129,8 +130,6 @@ const Sidebar: React.FC<SidebarProps> = ({
             right: pathAfterSlash === "ar" ? "25px" : "auto", // Adjust position for RTL
             left: pathAfterSlash === "ar" ? "auto" : "0", // Adjust position for LTR
           },
-
-
         }}
       />
       <Box
@@ -162,27 +161,24 @@ const Sidebar: React.FC<SidebarProps> = ({
                 }
                 label={
                   <Tooltip title={item.label}>
-
                     <Typography
                       sx={{
-                        textAlign: pathAfterSlash === 'ar' ? "right" : 'left',
+                        textAlign: pathAfterSlash === "ar" ? "right" : "left",
                         fontWeight: 400,
                         fontSize: "18px",
                         color: "#476B87",
                         lineHeight: "22.63px",
-
                       }}
                     >
-                      <span
-
-                      >
-                        {item.label.length > 15 ? `${item.label.substring(0, 12)}...` : item.label}
+                      <span>
+                        {item.label.length > 22
+                          ? `${item.label.substring(0, 22)}...`
+                          : item.label}
 
                         {/* {item.label} */}
                       </span>
                     </Typography>
                   </Tooltip>
-
                 }
                 style={{
                   marginRight: pathAfterSlash === "ar" ? "0px" : "16px",
@@ -195,7 +191,6 @@ const Sidebar: React.FC<SidebarProps> = ({
                   fontSize: "18px",
                   color: "#476B87",
                   lineHeight: "22.63px",
-
                 }}
               >
                 <span>({item.projectCount})</span>
