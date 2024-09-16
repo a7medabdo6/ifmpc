@@ -10,6 +10,7 @@ import {
   InputAdornment,
   IconButton,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -66,6 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const classes = useStyles();
   const t = useTranslations("Publications");
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
+  const isLargeScreen = useMediaQuery("(min-width:1500px)");
 
   return (
     <Box
@@ -133,7 +135,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         }}
       />
       <Box
-        sx={{ direction: pathAfterSlash === "ar" ? "rtl" : "ltr", gap: "8px" }}
+        sx={{
+          direction: pathAfterSlash === "ar" ? "rtl" : "ltr",
+          gap: "8px",
+        }}
       >
         <List>
           {items?.map((item) => (
@@ -170,19 +175,15 @@ const Sidebar: React.FC<SidebarProps> = ({
                         lineHeight: "22.63px",
                       }}
                     >
-                      <span>
-                        {item.label.length > 22
-                          ? `${item.label.substring(0, 22)}...`
-                          : item.label}
-
-                        {/* {item.label} */}
-                      </span>
+                      <span className="ellipsis">{item.label}</span>
                     </Typography>
                   </Tooltip>
                 }
                 style={{
                   marginRight: pathAfterSlash === "ar" ? "0px" : "16px",
+                  width: "90%",
                 }}
+                className="span-hide"
               />
               <Typography
                 sx={{

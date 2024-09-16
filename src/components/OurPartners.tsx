@@ -68,7 +68,7 @@ const OurPartners: React.FC = () => {
   return (
     <Box
       sx={{
-        marginTop:'100px',
+        marginTop: "100px",
         padding: "50px",
         paddingLeft: {
           md: "130px",
@@ -82,10 +82,10 @@ const OurPartners: React.FC = () => {
       <Typography
         className={classes.title}
         sx={{
-          marginTop:'1.2rem',
-          marginBottom:'1.7rem',
+          marginTop: ".7rem",
+          marginBottom: ".7rem",
           textAlign: pathAfterSlash === "ar" ? "right" : "left",
-          fontWeight:600
+          fontWeight: 600,
         }}
         variant="h6"
         gutterBottom
@@ -117,22 +117,23 @@ const OurPartners: React.FC = () => {
             key={partner.id}
             item
             sx={{
-              marginTop:'10px',
-              marginBottom:'15px',
+              marginTop: "10px",
+              marginBottom: "15px",
               paddingTop: {
                 xs: "10px",
                 md: "0px !important",
               },
               display: "flex",
               alignItems: "center",
-              justifyContent:  pathAfterSlash === "ar" ? "flex-end" : "flex-start",
+              justifyContent:
+                pathAfterSlash === "ar" ? "flex-end" : "flex-start",
             }}
           >
             <Image
               src={partner.image}
               alt={partner.name}
-              width={180}
-              height={40}
+              width={100}
+              height={100}
               quality={100}
             />
           </Grid>

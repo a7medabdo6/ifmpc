@@ -83,8 +83,6 @@ const Home: React.FC = () => {
   ];
   const componentRef = useRef<HTMLDivElement | null>(null); // Properly typed ref
 
-
- 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "My Document",
@@ -114,7 +112,6 @@ const Home: React.FC = () => {
     `,
   });
 
- 
   if (loading) return <LoadingIndicator />;
   if (fetchError) return <ErrorComponent message={fetchError} />;
   return (
@@ -135,7 +132,7 @@ const Home: React.FC = () => {
         }}
       >
         <Header
-        handlePrint={handlePrint}
+          handlePrint={handlePrint}
           handleDownloadPDF={generatePDF}
           onePublication={onePublication}
         />
@@ -156,10 +153,13 @@ const Home: React.FC = () => {
             }}
           >
             <ArticleSection
-                        componentRef={componentRef}
-
+              componentRef={componentRef}
               title={t("Article")}
-              content={pathAfterSlash === "ar" ? onePublication?.content_ar : onePublication?.content_en }
+              content={
+                pathAfterSlash === "ar"
+                  ? onePublication?.content_ar
+                  : onePublication?.content_en
+              }
             />
             <RelatedTopics />
           </Grid>

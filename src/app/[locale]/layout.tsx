@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import StoreProvider from './StoreProvider';
+import StoreProvider from "./StoreProvider";
 
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import ClientFooterWrapper from "./ClientFooterWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +16,8 @@ interface RootLayoutProps {
   children: React.ReactNode;
   params: {
     locale: string;
-  }
+  };
 }
-
 
 export default async function RootLayout({
   children,
@@ -28,13 +27,15 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={locale == "en" ? "ltr" : "rtl"}>
+      <body className={inter.className}>
+        {" "}
+        <NextIntlClientProvider messages={messages}>
+          <StoreProvider>
+            {children}
 
-      <body className={inter.className}>  <NextIntlClientProvider messages={messages}>
-        <StoreProvider>{children}
-
-        <ClientFooterWrapper />
-        </StoreProvider>
-      </NextIntlClientProvider>
+            <ClientFooterWrapper locale={locale} />
+          </StoreProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

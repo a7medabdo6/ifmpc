@@ -145,3 +145,13 @@ a {
 .rtl * {
   font-family: 'Almarai', sans-serif !important;
 }
+.ellipsis {
+  width: 100%; /* Adjust width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.span-hide span.MuiFormControlLabel-label{
+  width: 80%;
+}

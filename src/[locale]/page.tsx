@@ -23,7 +23,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchHomeData('en'));
+      dispatch(fetchHomeData("en"));
     }
   }, [dispatch, status]);
 

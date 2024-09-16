@@ -2,11 +2,19 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import { useAppSelector } from "@/lib/hooks";
+import { fetchHomeData } from "@/lib/features/homeSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useEffect } from "react";
 
-const ClientFooterWrapper = () => {
-  const { data } = useAppSelector((state) => state.home);
+const ClientFooterWrapper = ({ locale }: any) => {
+  const { data, status } = useAppSelector((state) => state.home);
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchHomeData(locale));
+    }
+  }, [dispatch, status]);
   return <Footer HomeData={data} />;
 };
 

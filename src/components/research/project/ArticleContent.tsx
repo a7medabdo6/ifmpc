@@ -126,12 +126,19 @@ import { Box } from "@mui/material";
 
 interface ArticleContentProps {
   content: string;
-  componentRef:any;
+  componentRef: any;
 }
 
-const ArticleContent: React.FC<ArticleContentProps> = ({ content,componentRef }) => {
+const ArticleContent: React.FC<ArticleContentProps> = ({
+  content,
+  componentRef,
+}) => {
   return (
-    <Box sx={{ padding: "12px",color:"#262626" }} id="content-to-printProject" >
+    <Box
+      ref={componentRef}
+      sx={{ padding: "12px", color: "#262626" }}
+      id="content-to-printProject"
+    >
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </Box>
   );
