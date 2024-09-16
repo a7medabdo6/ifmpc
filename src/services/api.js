@@ -512,6 +512,32 @@ export const fetchContacts = async (lng) => {
     };
   }
 };
+export const fetchContactUs = async (lng) => {
+  const apiUrl = `${baseUrl}/settings/contact-us-pages/`;
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Accept-Language": lng,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching contacts:", error.message);
+    return {
+      props: {
+        data: {},
+      },
+    };
+  }
+};
 
 export const createContactUs = async (data, lng) => {
   const apiUrl = `${baseUrl}/contacts/`;

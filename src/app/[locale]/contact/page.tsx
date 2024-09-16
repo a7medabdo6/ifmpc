@@ -10,7 +10,7 @@ import FAQSection from "@/components/contactUs/FAQSection";
 import NewsletterSubscription from "@/components/NewsletterSubscription";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "@/lib/hooks";
-import { createContactUs } from "../../../services/api";
+import { createContactUs, fetchContactUs } from "../../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // import the CSS file for toastify
 import LoadingIndicator from "@/components/custom/LoadingIndicator";
@@ -38,7 +38,7 @@ const Page = () => {
   });
   const [mapLink, setMapLink] = useState<string>("");
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
-  const { data, status, error } = useAppSelector((state) => state.home);
+  const { data, status } = useAppSelector((state) => state.home);
 
   const t = useTranslations("contactUs");
 
@@ -47,7 +47,31 @@ const Page = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [message, setMessage] = useState("");
+  const [ContactUs, setContactUs] = useState();
+  const [error, setError] = useState<string | null>(null);
+  const lng = pathAfterSlash || 'en';
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const loadContactUs = async () => {
+      
+      try {
+        const data = await fetchContactUs(lng);
+        setContactUs(data?.results || []);
+
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unexpected error occurred.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+if( lng)
+    loadContactUs();
+  }, [lng]);
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -94,7 +118,8 @@ const Page = () => {
       toast.error("Failed to submit contact request.");
     }
   };
-
+  if (loading) return <LoadingIndicator />;
+  if (error) return <ErrorComponent message={error} />;
   return (
     <Box className={classes.root}>
       <Navbar />
@@ -143,11 +168,12 @@ const Page = () => {
               setMapLink={setMapLink}
               countryEn={countryEn}
               setCountryEn={setCountryEn}
+              ContactUs={ContactUs}
             />
           </Grid>
         </Grid>
       </Box>
-      <Box className={classes.container}>
+      <Box sx={{paddingTop:'2rem'}}>
         <FAQSection />
       </Box>
       <NewsletterSubscription HomeData={data} />

@@ -1,72 +1,20 @@
 import React from 'react';
-import { Typography, Box, List, ListItem, ListItemText } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-
-const useStyles = makeStyles({
-  root: {
-    padding: '2rem 0',
-    width: '75%',
-    '@media (max-width: 600px)': {
-      width: '90%',
-    },
-  },
-  section: {
-    marginBottom: '2rem',
-  },
-  title: {
-    fontWeight: 600,
-    color: '#262626',
-  },
-  Who: {
-    fontWeight: "bold",
-    color: '#262626',
-    fontSize:"25px"
-  },
-  list: {
-    padding: 0,
-    marginLeft: '20px',
-  },
-  listItem: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    paddingLeft: 0,
-    paddingRight: 0,
-    position: 'relative',
-    '&::before': {
-      content: '"•"',  // إضافة النقطة
-      position: 'absolute',
-      left: '-20px',   // تحديد موقع النقطة بالنسبة للنص
-      top: '0',
-      fontSize: '20px', // حجم النقطة
-      color: '#262626',
-    },
-  },
-  listItemText: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginBottom:'0px',
-  },
-  primary: {
-    flex: '0 0 auto',
-    marginRight: '8px',
-    fontWeight: 600,
-    fontSize: '14px',
-    color: '#262626',
-  },
-  secondary: {
-    flex: '1 1 auto',
-    textAlign: 'left',
-    color: '#262626',
-  },
-});
+import { Typography, Box, List, ListItem } from '@mui/material';
+import { useTranslations } from 'next-intl';
+import { useAppSelector } from '@/lib/hooks';
 
 const WhoAreWe: React.FC = () => {
-  const classes = useStyles();
+  const t = useTranslations("whoareyou");
+  const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
+  const isArabic = pathAfterSlash === 'ar';
 
   return (
-    <Box className={classes.root} sx={{
+    <Box sx={{
+      padding: '2rem 0',
+      width: {
+        xs: '90%',
+        md: '75%',
+      },
       marginLeft: {
         xs: '24px',
         md: '130px'
@@ -77,68 +25,249 @@ const WhoAreWe: React.FC = () => {
       },
       color: '#262626',
     }}>
-      <Box className={classes.section}>
-        <Typography variant="h5" gutterBottom className={classes.Who} sx={{fontWeight:600,fontSize:'22px'}}>
-          Who Are We
+      <Box sx={{ marginBottom: '2rem',marginTop:'2rem' }}>
+        <Typography variant="h5" gutterBottom sx={{
+          fontWeight: 600,
+          fontSize: '22px',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('Who Are We')}
         </Typography>
       </Box>
-      <Box className={classes.section}>
-        <Typography variant="h6" gutterBottom className={classes.title} sx={{fontWeight:600,fontSize:'18px'}}>
-          Our Vision
+      <Box sx={{ marginBottom: '2rem',flexDirection:'column',alignItems: isArabic ? 'flex-end' :'flex-start' ,display:'flex' }}>
+        <Typography variant="h6" gutterBottom sx={{
+          fontWeight: 600,
+          fontSize: '18px',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('Our Vision')}
         </Typography>
-        <Typography paragraph sx={{ maxWidth: '782px' }}>
-      We believe in research and data-driven change and development. Why?<br />
-      We value change and development that is based on evidence and providing a cost-effective approach for our clients and partners.
-      Through research and impact analysis we can tailor the best solutions for the most challenging problems.
-    </Typography>
+        <Typography paragraph sx={{
+          maxWidth: '782px',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('Why?')}
+        </Typography>
       </Box>
-      <Box className={classes.section}>
-      <Typography variant="h6" gutterBottom className={classes.title} sx={{fontWeight:600,fontSize:'18px'}}>
-      Our Mission
+      <Box sx={{ marginBottom: '2rem' }}>
+        <Typography variant="h6" gutterBottom sx={{
+          fontWeight: 600,
+          fontSize: '18px',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('Our Mission')}
         </Typography>
-        <Typography paragraph sx={{ maxWidth: '782px' }}>
-          IFMPC strives to build a network bringing together experts, researchers, politicians, entrepreneurs working on political and economic development in Iraq.
+        <Typography paragraph sx={{
+          maxWidth: '100%',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('IFMPC strives')}
         </Typography>
-        <List className={classes.list}>
-          <ListItem className={classes.listItem} sx={{padding:'0px',marginLeft:"35px"}}>
-            <Box className={classes.listItemText} >
-              <Typography className={classes.primary}  sx={{fontWeight:600}}>Private Sector : </Typography>
-              <Typography className={classes.secondary}>We help our clients to find the edge to stay ahead of competition.</Typography>
+        <List sx={{ padding: 0, marginLeft: isArabic ? "0px" : '45px', marginRight: isArabic ? "45px" : '0px' }}>
+          <ListItem sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            paddingLeft: 0,
+            paddingRight: 0,
+            position: 'relative',
+            '&::before': {
+              content: '"•"',
+              position: 'absolute',
+              left: isArabic ? null : '-20px',
+              right: isArabic ? '-20px' : null,
+              top: '0',
+              fontSize: '20px',
+              color: '#262626',
+            },
+          }}>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              width: '100%',
+              marginBottom: '0px',
+              flexDirection: isArabic ? 'row-reverse' : 'row',
+
+              textAlign: isArabic ? 'right' : 'left',
+            }}>
+              <Typography sx={{
+                fontWeight: 600,
+                fontSize: '14px',
+                color: '#262626',
+                marginRight: '8px',
+              }}>
+                {t('Private Sector : ')}
+              </Typography>
+              <Typography sx={{
+                color: '#262626',
+                textAlign: isArabic ? 'right' : 'left'
+              }}>
+                {t('Private Sectordes')}
+              </Typography>
             </Box>
           </ListItem>
-          <ListItem className={classes.listItem}sx={{padding:'0px',marginLeft:"35px"}}>
-            <Box className={classes.listItemText}>
-              <Typography className={classes.primary } sx={{fontWeight:600}}>Public Sector : </Typography>
-              <Typography className={classes.secondary}>We help the public sector to develop strategies for better results.</Typography>
+          <ListItem sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            paddingLeft: 0,
+            paddingRight: 0,
+            position: 'relative',
+            '&::before': {
+              content: '"•"',
+              position: 'absolute',
+              left: isArabic ? null : '-20px',
+              right: isArabic ? '-20px' : null,
+              top: '0',
+              fontSize: '20px',
+              color: '#262626',
+            },
+          }}>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              flexDirection: isArabic ? 'row-reverse' : 'row',
+              textAlign: isArabic ? 'right' : 'left',
+
+              width: '100%',
+              marginBottom: '0px',
+            }}>
+              <Typography sx={{
+                fontWeight: 600,
+                fontSize: '14px',
+                color: '#262626',
+                marginRight: '8px',
+              }}>
+                {t('Public Sector : ')}
+              </Typography>
+              <Typography sx={{
+                color: '#262626',
+                textAlign: isArabic ? 'right' : 'left'
+              }}>
+                {t('Public Sectordes')}
+              </Typography>
             </Box>
           </ListItem>
         </List>
       </Box>
-      <Box className={classes.section}>
-      <Typography variant="h6" gutterBottom className={classes.title} sx={{fontWeight:600,fontSize:'18px'}}>
-      Our Approach
+      <Box sx={{ marginBottom: '2rem' }}>
+        <Typography variant="h6" gutterBottom sx={{
+          fontWeight: 600,
+          fontSize: '18px',
+          color: '#262626',
+          textAlign: isArabic ? 'right' : 'left'
+        }}>
+          {t('Our Approach')}
+
+
         </Typography>
-        <Typography paragraph>
-          How do we plan to achieve our goals and deliver on our promises to clients and partners?
+        <Typography paragraph sx={{
+
+          textAlign: isArabic ? 'right' : 'left', color: '#262626',
+
+        }}>
+          {t('How do we')}
+
         </Typography>
-        <List className={classes.list}>
-          <ListItem className={classes.listItem} sx={{padding:'0px',marginLeft:"35px"}}>
-            <Box className={classes.listItemText} sx={{ maxWidth: '782px' }}>
-            <Typography className={classes.secondary}>
-    <span style={{ fontWeight: 600 }}>Research: </span>
-    Through research, we strive to understand the drivers and causes of problems, inform on learning and measure impact.
-  </Typography></Box>
-          </ListItem>
-          <ListItem className={classes.listItem} sx={{padding:'0px',marginLeft:"35px"}}>
-            <Box className={classes.listItemText} sx={{ maxWidth: '782px' }}>
-              <Typography className={classes.primary} sx={{fontWeight:600}}>Training : </Typography>
-              <Typography className={classes.secondary}>We build capacities and prepare our clients for success and prosperity through tailored training.</Typography>
+        <List sx={{ padding: 0, marginLeft: isArabic ? "0px" : '45px', marginRight: isArabic ? "45px" : '0px' }}>
+          <ListItem sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: isArabic ? 'flex-end' : 'flex-start',
+
+            paddingLeft: 0,
+            paddingRight: 0,
+            position: 'relative',
+            '&::before': {
+              content: '"•"',
+              position: 'absolute',
+              left: isArabic ? null : '-20px',
+              right: isArabic ? '-20px' : null,
+              top: '0',
+              fontSize: '20px',
+              color: '#262626',
+            },
+          }}>
+            <Box sx={{
+              maxWidth: '782px', display: 'flex',
+              justifyContent: 'flex-start', flexDirection: isArabic ? 'row-reverse' : 'row',
+              textAlign: isArabic ? 'right' : 'left',
+            }}>
+              <Typography sx={{
+                color: '#262626',
+              }}>
+                <span style={{
+                  fontWeight: 600, color: '#262626',
+                }}>        {t('Research')}
+                </span>
+                {t('Researchdes')}
+              </Typography>
             </Box>
           </ListItem>
-          <ListItem className={classes.listItem} sx={{padding:'0px',marginLeft:"35px"}}>
-            <Box className={classes.listItemText} sx={{ maxWidth: '782px' }}>
-              <Typography className={classes.primary} sx={{fontWeight:600}}>Experts : </Typography>
-              <Typography className={classes.secondary}>We work closely with local experts to build grassroots resilience and develop realistic solutions.</Typography>
+          <ListItem sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: isArabic ? 'flex-end' : 'flex-start',
+
+            paddingLeft: 0,
+            paddingRight: 0,
+            position: 'relative',
+            '&::before': {
+              content: '"•"',
+              position: 'absolute',
+              left: isArabic ? null : '-20px',
+              right: isArabic ? '-20px' : null,
+              top: '0',
+              fontSize: '20px',
+              color: '#262626',
+            },
+          }}>
+            <Box sx={{
+              maxWidth: '782px', display: 'flex',
+              justifyContent: 'flex-start', flexDirection: isArabic ? 'row-reverse' : 'row',
+              textAlign: isArabic ? 'right' : 'left',
+            }}>
+              <Typography sx={{
+                fontWeight: 600, color: '#262626',
+              }}> {t('Training')}</Typography>
+              <Typography>
+                {t('Trainingdes')}
+              </Typography>
+            </Box>
+          </ListItem>
+          <ListItem sx={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: isArabic ? 'flex-end' : 'flex-start',
+            paddingLeft: 0,
+            paddingRight: 0,
+            position: 'relative',
+            '&::before': {
+              content: '"•"',
+              position: 'absolute',
+              left: isArabic ? null : '-20px',
+              right: isArabic ? '-20px' : null,
+              top: '0',
+              fontSize: '20px',
+              color: '#262626',
+            },
+          }}>
+            <Box sx={{
+              maxWidth: '782px', display: 'flex',
+              justifyContent: 'flex-start', flexDirection: isArabic ? 'row-reverse' : 'row',
+              textAlign: isArabic ? 'right' : 'left',
+            }}>
+              <Typography sx={{
+                fontWeight: 600, color: '#262626',
+              }}> {t('Experts')}</Typography>
+              <Typography sx={{
+                color: '#262626',
+              }}>
+                {t('Expertsdes')}
+              </Typography>
             </Box>
           </ListItem>
         </List>

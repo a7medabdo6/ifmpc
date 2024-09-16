@@ -19,20 +19,17 @@
   },
   "Training": {
     "Training Features": "Training Features"
-   
   },
   "Search": {
     "projects": "Projects",
-    "publications": "Publications"   
+    "publications": "Publications"
   },
   "BackgroundImageComponent": {
     "contactus": "Contact Us",
-
     "Weareredefiningresearchanddevelopmentstandards": "We are redefining research and development standards"
   },
   "UpcomingTrainings": {
     "MoU": "MoU with Consulting & Research Center at Cihan University – Duhok (CRC.CUD)",
-
     "Consultation Training": "Consultation Training",
     "20 June - 25 June": "20 June - 25 June",
     "25 June 2024": "25 June 2024",
@@ -65,8 +62,7 @@
   },
   "Publications": {
     "All Publications": "All Publications",
-    "Checked Items":"Checked Items",
-
+    "Checked Items": "Checked Items",
     "Topics": "Topics",
     "All": "All",
     "Publications": "Publications",
@@ -117,13 +113,14 @@
   "contactUs": {
     "contactUs": "Contact Us",
     "firstName": "First Name",
+    "Frequently Asked Questions": "Frequently Asked Questions",
     "lastName": "Last Name",
     "phoneNumber": "Phone Number",
     "emailAddress": "Email Address",
     "contactWithUs": "Contact with us",
-"Here is the Email of IFPMC" :"Here is the Email of IFPMC",
-"Here is the Phone Number of IFPMC":"Here is the Phone Number of IFPMC",
-"Country":"Country (EN) : ",
+    "Here is the Email of": "Here is the Email of",
+    "Here is the Phone Number of": "Here is the Phone Number of",
+    "Country": "Country (EN) : ",
     "writeMessage": "Write your message here",
     "contactInformation": "Contact Information",
     "location": "Here is the location of IFPMC",
@@ -155,5 +152,34 @@
     "Location advantage": "Location advantage refers to advantages that can be gained from combining the resources of the firm (ownership advantages) with the resources available in the host economy. Thus, FDI allows firms access to profitable resources or skills they would not have access to within their home market. Location advantages can include: Access to skilled labour. New or rapidly expanding product markets. Natural resources; and Government incentive schemes designed to encourage FDI. Locating operations in a foreign market can allow a firm to overcome several obstacles, including government protectionist policies and transportation costs, while also giving it the advantage of being close to the customer base. The location of these unique advantages will determine where the firm chooses to establish operations abroad. For example, Apple has fragmented its supply chain to take advantage of low wages in China. Agglomeration as a form of location advantage: Agglomeration refers to the clustering of similar businesses or industries in the same location. Agglomeration is considered a location advantage for several reasons. Firstly, agglomeration results in knowledge spillovers and the clustering of a skilled labour force in one region. The region may also develop a group of specialised suppliers who can service competing businesses. This has been the case in San Francisco and Silicon Valley, which have become regional hubs for the technology industry.",
     "Internalisation advantages": "Internalisation advantages occur when it is more beneficial for a firm to establish its own production and sales operations in a foreign location as opposed to exporting or licensing their products to the host economy. For instance, a firm may have acquired the necessary capital and assets that makes it profitable for them to control and manage the entire production process instead of outsourcing production to local manufacturers. Internalisation, therefore, allows a firm greater control of firm-specific knowledge and management skills, replacing external market relationships with internal supply processes. Nevertheless, to understand the advantages of internalisation, it is necessary to understand the importance of transaction costs. This section will first examine the importance of transaction costs and the cost of using the market, before examining the advantages of internalisation. Finally, this section will investigate some of the disadvantages of internalisation.",
     "Transaction costs": "Transaction costs include: Bargaining. Searching for appropriate trading partnerships. Policing and ensuring contracts are enforced. Establishing terms, specifications, and prices. Due diligence."
+  },
+  "whoareyou": {
+    "Who Are We": "Who Are We",
+    "Our Vision": "Our Vision",
+    "Why?": "Why? We value change and development that is based on evidence and providing a cost-effective approach for our clients and partners. Through research and impact analysis, we can tailor the best solutions for the most challenging problems.",
+    "Our Mission": "Our Mission",
+    "IFMPC strives": "IFMPC strives to build a network bringing together experts, researchers, politicians, entrepreneurs working on political and economic development in Iraq.",
+    "Private Sectordes": "We help our clients to find the edge to stay ahead of competition.",
+    "Public Sectordes": "We help the public sector to develop strategies for better results",
+    "Public Sector : ":"Public Sector : ",
+    "Private Sector : ":"Private Sector : ",
+    "Our Approach": "Our Approach",
+    "Research":"Research : ",
+    "Training":"Training : ",
+    "Experts":"Experts : ",
+    "How do we": "How do we plan to achieve our goals and deliver on our promises to clients and partners?",
+    "Researchdes": "Through research, we strive to understand the drivers and causes of problems, inform on learning and measure impact.",
+    "Trainingdes": "We build capacities and prepare our clients for success and prosperity through tailored training.",
+    "Expertsdes": "We work closely with local experts to build grassroots resilience and develop realistic solutions."
+  },
+  "Works": {
+    "How It Works in IFPMC": "How It Works in",
+    "Contact Us":"Contact Us",
+    "Before": "Before",
+    "Carryingdes": "Carrying out training needs assessment. Identifying the purpose of the training. Aligning learning outcomes with business goals. Planning the most appropriate delivery method.",
+    "During": "During",
+    "Duringdes": "Draw upon the learners prior knowledge to create connections. Align content with real-life jobs and responsibilities. Divide programs into modules. Provide action plans to keep learners motivated.",
+    "After": "After",
+    "Supplement": "Supplement training with social learning. Arrange post-training follow-up sessions. Provide opportunities for practice skills to be applied for all learners ."
   }
 }

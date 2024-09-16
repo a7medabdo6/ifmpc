@@ -13,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { makeStyles } from "@mui/styles";
 import { useAppSelector } from "@/lib/hooks";
 import { fetchQuestions } from "@/services/api";
+import { useTranslations } from "next-intl";
 
 const useStyles = makeStyles((theme) => ({
   faqContainer: {
@@ -53,6 +54,7 @@ const FAQSection = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations("contactUs");
 
   const lng = pathAfterSlash;
 
@@ -91,19 +93,23 @@ const FAQSection = () => {
     >
       <Box>
         <Typography
-          sx={{ color: "#262626", fontSize: "32px" }}
+          sx={{ color: "#262626", fontSize: "32px",
+            textAlign:pathAfterSlash === 'ar' ?'right' : 'left'
+           }}
           variant="h6"
           gutterBottom
         >
-          Frequently Asked Questions
+          {t('Frequently Asked Questions')}
+          
         </Typography>
         <Grid container spacing={2}>
           {Events?.results.map((item, index) => (
             <Grid item xs={12} md={6} key={index} className={classes.faqItem}>
               <Accordion
-                style={{ backgroundColor: "transparent", boxShadow: "unset" }}
+                style={{ backgroundColor: "transparent", boxShadow: "unset",width:'100%' }}
               >
                 <AccordionSummary
+                style={{paddingLeft:'0px'}}
                   expandIcon={<AddIcon style={{ color: "#476B87" }} />}
                   aria-controls="panel1-content"
                   id="panel1-header"

@@ -52,6 +52,7 @@ interface ContactFormProps {
   onClick: () => void;
   title: string;
   buttonText: string;
+  
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
@@ -108,11 +109,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   return (
-    <Box sx={{ backgroundColor: '#fff', padding: '3.5rem', borderRadius: '8px' }}>
-      <Typography className={classes.title} variant="h6" gutterBottom>
+    <Box sx={{ backgroundColor: '#fff', padding: '2rem', borderRadius: '8px' }}>
+      <Typography className={classes.title} style={{fontWeight:'bold'}} variant="h6" gutterBottom>
         {title}
       </Typography>
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" style={{marginTop:'32px'}}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             {renderTextField(t('firstName'), firstName, onFirstNameChange)}
