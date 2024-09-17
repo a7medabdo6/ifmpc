@@ -129,7 +129,7 @@ const HowItWorks = () => {
                 }}
                 className={classes.title}
               >
-                1. {t("Before")}
+               {t("Before")}
               </Typography>
               <Typography
                 variant="body1"
@@ -158,7 +158,7 @@ const HowItWorks = () => {
 
                 className={classes.title}
               >
-                3. {t('During')}
+                {t('During')}
 
 
 
@@ -189,7 +189,7 @@ const HowItWorks = () => {
 
                 className={classes.title}
               >
-                3. {t('After')}
+               {t('After')}
 
               </Typography>
               <Typography

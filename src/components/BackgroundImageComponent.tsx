@@ -10,6 +10,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useAppSelector } from "@/lib/hooks";
 import { useTranslations } from "next-intl";
 import { makeStyles } from "@mui/styles";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -80,6 +81,8 @@ const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ Hom
         >
           {HomeData?.web_site_settings?.main_header}
         </Typography>
+        <Link href={`/${pathAfterSlash}/contact`} passHref>
+
         <CustomButton
           onClick={handleClick}
           customColor="white"
@@ -90,6 +93,8 @@ const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ Hom
         >
           {t("contactus")}
         </CustomButton>
+        </Link>
+
       </div>
     </div>
   );

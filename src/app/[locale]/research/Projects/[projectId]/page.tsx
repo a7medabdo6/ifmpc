@@ -47,7 +47,15 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const lng = pathAfterSlash;
+  const [tags,setTags]= useState([])
 
+useEffect(()=>{
+  if(oneProject){
+    const dataTags = oneProject.tags.map((i: { name: any; })=>{return(i.name)})
+    setTags(dataTags)
+    
+  }
+},[oneProject])
   useEffect(() => {
     const getProject = async () => {
       try {
@@ -145,7 +153,7 @@ const Home: React.FC = () => {
             <RelatedTopics />
           </Grid>
           <Grid item xs={12} md={3}>
-            <RelatedProjects projects={relatedProjects} />
+            <RelatedProjects projects={tags} />
           </Grid>
         </Grid>
       </Box>
