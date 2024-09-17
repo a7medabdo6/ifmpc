@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
   bigContainer: {
     maxWidth: "100%",
   },
-  title: {
-  },
+  title: {},
   noData: {
     textAlign: "center",
     marginTop: "20px",
@@ -74,7 +73,7 @@ const MostRecentContentPublications: React.FC<
   return (
     <div style={{ backgroundColor: "white" }}>
       {projects.length === 0 ? (
-        <Typography className={classes.noData} >{t("Nodatafound")}</Typography>
+        <Typography className={classes.noData}>{t("Nodatafound")}</Typography>
       ) : (
         <>
           <Section
@@ -98,7 +97,6 @@ const MostRecentContentPublications: React.FC<
                   cursor: "pointer",
                   marginRight: "16px",
                   color: currentPage === 1 ? "gray" : "blue",
-
                 }}
                 component="span"
                 className={classes.title}

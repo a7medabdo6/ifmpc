@@ -155,3 +155,9 @@ a {
 .span-hide span.MuiFormControlLabel-label{
   width: 80%;
 }
+.rtl .header-right {
+  text-align: right;
+}
+.header-right input{
+  text-align: center;
+}

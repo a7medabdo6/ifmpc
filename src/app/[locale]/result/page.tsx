@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
   bigContainer: {
     maxWidth: "100%",
   },
-  title: {
-  },
+  title: {},
 }));
 interface Project {
   id: number;
@@ -66,9 +65,7 @@ const Page = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   // State to manage selected IDs
-  const [categoriesProjects, setCategoriesProjects] = useState<number[]>([
-
-  ]);
+  const [categoriesProjects, setCategoriesProjects] = useState<number[]>([]);
   const [categoriesPublications, setCategoriesPublications] = useState<
     number[]
   >([]);
@@ -111,8 +108,10 @@ const Page = () => {
       router.push(`/${pathAfterSlash}/result?searchQuery=${queryParam}`);
     }
     if (
-      (searchData?.results?.projects && searchData?.results?.projects.length > 0) ||
-      (searchData?.results?.publications && searchData?.results?.publications.length > 0)
+      (searchData?.results?.projects &&
+        searchData?.results?.projects.length > 0) ||
+      (searchData?.results?.publications &&
+        searchData?.results?.publications.length > 0)
     ) {
       console.log("Dispatching results:", Results);
       const fetchedData = {
@@ -125,8 +124,10 @@ const Page = () => {
       router.push(`/${pathAfterSlash}/result?searchQuery=${queryParam}`);
     } else {
       if (
-        (searchData?.results?.projects && searchData?.results?.projects.length === 0) ||
-        (searchData?.results?.publications && searchData?.results?.publications.length === 0)
+        (searchData?.results?.projects &&
+          searchData?.results?.projects.length === 0) ||
+        (searchData?.results?.publications &&
+          searchData?.results?.publications.length === 0)
       ) {
         setSearchResult(
           `We don't have results for your search. Try using different keywords, check out our latest articles, or reach out to support@IFPMC.com`
@@ -146,29 +147,22 @@ const Page = () => {
           lng,
         })
       );
-      
     }
   };
 
-  useEffect(()=>{
-    if( searchQuery &&
-      categoriesProjects &&
-      categoriesPublications &&
-      lng){
-         dispatch(
-          fetchSearchData({
-            searchQuery,
-            categoriesProjects,
-            categoriesPublications,
-            lng,
-          })
-        );
-        console.log(data);
-  
-      }
-  },[searchQuery,categoriesProjects,
-    categoriesPublications,
-    lng,])
+  useEffect(() => {
+    if (searchQuery && categoriesProjects && categoriesPublications && lng) {
+      dispatch(
+        fetchSearchData({
+          searchQuery,
+          categoriesProjects,
+          categoriesPublications,
+          lng,
+        })
+      );
+      console.log(data);
+    }
+  }, [searchQuery, categoriesProjects, categoriesPublications, lng]);
   return (
     <Box className={classes.bigContainer} sx={{ backgroundColor: "#ffffff" }}>
       <Navbar />
@@ -226,7 +220,7 @@ const Page = () => {
         <Grid
           item
           xs={12} // Full width in small screens
-          md={2} // 1/3 width in medium and large screens
+          md={3} // 1/3 width in medium and large screens
           sx={{
             display: {
               xs: "block",
@@ -238,15 +232,17 @@ const Page = () => {
             },
           }}
         >
-          <Sidebar categoriesProjects={categoriesProjects} setCategoriesProjects={setCategoriesProjects}
-
-            categoriesPublications={categoriesPublications} setCategoriesPublications={setCategoriesPublications}
+          <Sidebar
+            categoriesProjects={categoriesProjects}
+            setCategoriesProjects={setCategoriesProjects}
+            categoriesPublications={categoriesPublications}
+            setCategoriesPublications={setCategoriesPublications}
           />
         </Grid>
         <Grid
           item
           xs={12} // Full width in small screens
-          md={10} // 2/3 width in medium and large screens
+          md={9} // 2/3 width in medium and large screens
           className={classes.content}
           sx={{
             display: "flex",

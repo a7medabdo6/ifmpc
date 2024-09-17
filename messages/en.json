@@ -103,7 +103,8 @@
     "Outdoor Sales (10)": "Outdoor Sales",
     "Clear": "Clear",
     "Filter Results:": "Filter Results :",
-    "Search Results for": "Search Results for "
+    "Search Results for": "Search Results for ",
+    "Explore all Topics": "Explore all Topics"
   },
   "pagination": {
     "Next": "Next",
@@ -161,12 +162,12 @@
     "IFMPC strives": "IFMPC strives to build a network bringing together experts, researchers, politicians, entrepreneurs working on political and economic development in Iraq.",
     "Private Sectordes": "We help our clients to find the edge to stay ahead of competition.",
     "Public Sectordes": "We help the public sector to develop strategies for better results",
-    "Public Sector : ":"Public Sector : ",
-    "Private Sector : ":"Private Sector : ",
+    "Public Sector : ": "Public Sector : ",
+    "Private Sector : ": "Private Sector : ",
     "Our Approach": "Our Approach",
-    "Research":"Research : ",
-    "Training":"Training : ",
-    "Experts":"Experts : ",
+    "Research": "Research : ",
+    "Training": "Training : ",
+    "Experts": "Experts : ",
     "How do we": "How do we plan to achieve our goals and deliver on our promises to clients and partners?",
     "Researchdes": "Through research, we strive to understand the drivers and causes of problems, inform on learning and measure impact.",
     "Trainingdes": "We build capacities and prepare our clients for success and prosperity through tailored training.",
@@ -174,7 +175,7 @@
   },
   "Works": {
     "How It Works in IFPMC": "How It Works in",
-    "Contact Us":"Contact Us",
+    "Contact Us": "Contact Us",
     "Before": "Before",
     "Carryingdes": "Carrying out training needs assessment. Identifying the purpose of the training. Aligning learning outcomes with business goals. Planning the most appropriate delivery method.",
     "During": "During",

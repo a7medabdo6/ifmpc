@@ -11,6 +11,7 @@ import { fetchSearch } from "@/services/api";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import { fetchSearchData } from "@/lib/features/searchSlice";
+import { useTranslations } from "next-intl";
 
 interface Project {
   id: number;
@@ -56,27 +57,35 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     padding: "16px",
-    marginTop: "100px",
+    marginTop: "50px",
     marginBottom: "110px",
   },
   title: {
     fontWeight: 600,
-    marginBottom: "16px",
+    marginBottom: "30px !important",
     transition: "opacity 0.3s ease",
-     paddingLeft:'130px',
-    paddingRight:'130px',
+    paddingLeft: "130px",
+    paddingRight: "130px",
     width: "100%",
-
+    display: "flex",
+    justifyContent: "center",
+  },
+  titleRight: {
+    fontWeight: 600,
+    marginBottom: "20px !important",
+    transition: "opacity 0.3s ease",
+    paddingLeft: "130px",
+    paddingRight: "130px",
+    width: "100%",
   },
   searchBox: {
     display: "flex",
     alignItems: "center",
     width: "100%",
-    paddingLeft:'130px',
-    paddingRight:'130px'
+    paddingLeft: "130px",
+    paddingRight: "130px",
   },
   textField: {
-
     flexGrow: 1,
     marginRight: "8px",
     borderRadius: "40px",
@@ -85,7 +94,7 @@ const useStyles = makeStyles({
       borderRadius: "40px",
       height: "48px",
       "& input": {
-        padding: "0 20px",
+        padding: "15px 20px",
       },
     },
     "& .MuiInputLabel-outlined": {
@@ -117,6 +126,7 @@ const SearchComponent: React.FC = () => {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [query, setQuery] = useState("");
+  const t = useTranslations("Result");
 
   const [searchResult, setSearchResult] = useState<string | null>(null);
   const [Results, setResults] = useState<ResultsType | null>(null);
@@ -126,22 +136,17 @@ const SearchComponent: React.FC = () => {
     setSearchQuery(event.target.value);
   };
 
-
   const searchData = useAppSelector((state) => state.search.data);
   const status = useAppSelector((state) => state.search.status);
   const error = useAppSelector((state) => state.search.error);
   console.log(searchData);
 
   // State to manage query and other parameters
-  const [categoriesProjects, setCategoriesProjects] = useState<number[]>([
-    
-  ]);
+  const [categoriesProjects, setCategoriesProjects] = useState<number[]>([]);
   const [categoriesPublications, setCategoriesPublications] = useState<
     number[]
   >([]);
 
-  
-  
   const handleSearch = () => {
     // Dispatch the action to fetch search results
     dispatch(
@@ -155,8 +160,10 @@ const SearchComponent: React.FC = () => {
   };
   useEffect(() => {
     if (
-      (searchData?.results?.projects && searchData?.results?.projects.length > 0) ||
-      (searchData?.results?.publications && searchData?.results?.publications.length > 0)
+      (searchData?.results?.projects &&
+        searchData?.results?.projects.length > 0) ||
+      (searchData?.results?.publications &&
+        searchData?.results?.publications.length > 0)
     ) {
       console.log("Dispatching results:", Results);
       const fetchedData = {
@@ -170,8 +177,10 @@ const SearchComponent: React.FC = () => {
       router.push(`/${pathAfterSlash}/result?searchQuery=${queryParam}`);
     } else {
       if (
-        (searchData?.results?.projects && searchData?.results?.projects.length === 0) ||
-        (searchData?.results?.publications && searchData?.results?.publications.length === 0)
+        (searchData?.results?.projects &&
+          searchData?.results?.projects.length === 0) ||
+        (searchData?.results?.publications &&
+          searchData?.results?.publications.length === 0)
       ) {
         setSearchResult(
           `We don't have results for your search. Try using different keywords, check out our latest articles, or reach out to support@IFPMC.com`
@@ -182,26 +191,33 @@ const SearchComponent: React.FC = () => {
 
   return (
     <Box className={classes.container}>
-      <Box sx={{ width: (Results?.projects && Results.projects.length === 0) ||
-        (Results?.publications && Results.publications.length === 0) ? "600px" : "100%" }}>
+      <Box
+        sx={{
+          width:
+            (Results?.projects && Results.projects.length === 0) ||
+            (Results?.publications && Results.publications.length === 0)
+              ? "600px"
+              : "100%",
+        }}
+      >
         {!searchQuery ? (
           <Typography
             variant="h6"
             className={classes.title}
             style={{ opacity: searchQuery ? 0 : 1 }}
           >
-            Explore all Topics
+            {t("Explore all Topics")}
           </Typography>
         ) : (
           <Typography
             variant="h6"
-            className={classes.title}
+            className={`${classes.titleRight} header-right`}
             style={{
               opacity: searchQuery ? 1 : 0,
               marginRight: searchQuery && "50px",
             }}
           >
-            Search Results for “ {searchQuery} ”
+            {t("Search Results for")}“ {searchQuery} ”
           </Typography>
         )}
       </Box>
@@ -209,11 +225,11 @@ const SearchComponent: React.FC = () => {
       <Box className={classes.searchBox}>
         <TextField
           variant="outlined"
-          placeholder="Explore all Topics"
+          placeholder={t("Explore all Topics")}
           fullWidth
           value={searchQuery}
           onChange={handleChange}
-          className={classes.textField}
+          className={`${classes.textField} header-right`}
           onKeyPress={(e) => {
             if (e.key === "Enter") {
               handleSearch();

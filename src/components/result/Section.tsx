@@ -17,8 +17,7 @@ import { useTranslations } from "next-intl";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-  },
+  title: {},
 }));
 
 const ResponsiveImageWrapper = styled.div`
@@ -83,7 +82,7 @@ const Section: FC<SectionProps> = ({
     alignItems: "flex-start",
     padding: title === "Upcoming Trainings" ? 16 : 0,
     marginBottom: 16,
-    borderBottom: top ? undefined :"1px solid #CCCBCB",
+    borderBottom: top ? undefined : "1px solid #CCCBCB",
     paddingBottom: 1,
     // border: top ? undefined : "1px solid #CCCBCB",
   };
@@ -108,7 +107,7 @@ const Section: FC<SectionProps> = ({
             <ListItemText
               sx={{
                 direction: pathAfterSlash === "ar" ? "rtl" : "ltr",
-                marginRight:pathAfterSlash === "ar" ? '0px' : "80px",
+                marginRight: pathAfterSlash === "ar" ? "0px" : "80px",
               }}
               primary={
                 <Box
@@ -149,7 +148,7 @@ const Section: FC<SectionProps> = ({
                     <Typography
                       variant="body2"
                       color="textPrimary"
-                      className={classes.title}
+                      className={`${classes.title} header-right`}
                       sx={{
                         fontWeight: 600,
                         color: "#476B87",
@@ -182,7 +181,9 @@ const Section: FC<SectionProps> = ({
                         : "left",
                   }}
                   className={classes.title}
-                  dangerouslySetInnerHTML={{ __html: item.content }} // عرض المحتوى كـ HTML
+                  dangerouslySetInnerHTML={{
+                    __html: item.content.slice(0, 320),
+                  }} // عرض المحتوى كـ HTML
                 />
               }
             />
@@ -190,7 +191,7 @@ const Section: FC<SectionProps> = ({
               <Box
                 sx={{
                   width: "100%",
-                  marginBottom:'20px',
+                  marginBottom: "20px",
                   maxWidth: { xs: "300px", md: "32%" },
                 }}
               >
