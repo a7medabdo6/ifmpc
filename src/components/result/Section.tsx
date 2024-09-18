@@ -144,7 +144,7 @@ const Section: FC<SectionProps> = ({
                       {formatDate(item.created)}
                     </Typography>
                   </Box>
-                  <Link href={`/${pathAfterSlash}/research/${pathLink}/${item?.id}`} passHref>
+                  <Link href={`/${pathAfterSlash}/research/${item?.image ? "Projects" : "Publications"}/${item?.id}`} passHref>
                     <Typography
                       variant="body2"
                       color="textPrimary"
