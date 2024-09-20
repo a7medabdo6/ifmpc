@@ -2,6 +2,9 @@ import React from "react";
 import { Typography, Box, List, ListItem } from "@mui/material";
 import { useTranslations } from "next-intl";
 import { useAppSelector } from "@/lib/hooks";
+import ModalCom from "../ModalCom";
+import CustomButton from "../custom/CustomButton";
+import { colors } from "@/utils/colors";
 
 const WhoAreWe: React.FC = () => {
   const t = useTranslations("whoareyou");
@@ -49,23 +52,27 @@ const WhoAreWe: React.FC = () => {
           display: "flex",
         }}
       >
-        <Typography
-          variant="h6"
-          gutterBottom
-          sx={{
-            fontWeight: 600,
-            fontSize: "18px",
-            color: "#262626",
-            textAlign: isArabic ? "right" : "left",
-          }}
-        >
-          {t("Our Vision")}
-        </Typography>
+        <ModalCom
+          pdfUrl={"../road.pdf"}
+          component={
+            <CustomButton
+              customColor="white"
+              width="175px"
+              height="38px"
+              backgroundColor={colors.active}
+              borderRadius="8px"
+            >
+              {t("Our Vision")}
+            </CustomButton>
+          }
+        />
+
         <Typography
           paragraph
           sx={{
             maxWidth: "782px",
             color: "#262626",
+            marginTop: "10px",
             textAlign: isArabic ? "right" : "left",
           }}
         >

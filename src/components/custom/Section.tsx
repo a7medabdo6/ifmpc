@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: "12px",
   },
-  title: {
-  },
+  title: {},
 }));
 
 export interface Item {
@@ -84,14 +83,17 @@ const Section: FC<SectionProps> = ({
     <Box>
       <List>
         {items.slice(0, 4).map((item, index) => {
-        const isFourthItem = index === 3; // العنصر الرابع (المؤشر 3)
+          const isFourthItem = index === 3; // العنصر الرابع (المؤشر 3)
 
           return (
             <ListItem
               key={index}
               style={sectionStyle}
               sx={{
-                borderBottom: isFourthItem && title === "Latest Projects"? 'none' : "1px solid #CCCBCB ",
+                borderBottom:
+                  isFourthItem && title === "Latest Projects"
+                    ? "none"
+                    : "1px solid #CCCBCB ",
 
                 display: {
                   xs: "block",
@@ -123,7 +125,8 @@ const Section: FC<SectionProps> = ({
                         <AccessTimeIcon
                           sx={{
                             color: colors.active,
-                            marginLeft: pathAfterSlash === "ar" ? "13px" : "0px",
+                            marginLeft:
+                              pathAfterSlash === "ar" ? "13px" : "0px",
                           }}
                         />
                       </ListItemIcon>
@@ -131,7 +134,6 @@ const Section: FC<SectionProps> = ({
                         sx={{
                           color: "#606060",
                           fontWeight: pathAfterSlash === "ar" ? 600 : "",
-                        
                         }}
                         component="span"
                       >
@@ -139,7 +141,11 @@ const Section: FC<SectionProps> = ({
                       </Typography>
                     </Box>
                     <Link
-                      href={`/${pathAfterSlash}/research/${pathLink}/${item?.id}`}
+                      href={
+                        pathLink
+                          ? `/${pathAfterSlash}/research/${pathLink}/${item?.id}`
+                          : "#"
+                      }
                       passHref
                     >
                       <Typography
@@ -151,13 +157,11 @@ const Section: FC<SectionProps> = ({
                           color: "#476B87",
                           fontSize: "18px",
                           cursor: "pointer",
-                          textAlign:
-                            pathAfterSlash === "ar"
-                              ? "right"
-                              : "left",
-                        
+                          textAlign: pathAfterSlash === "ar" ? "right" : "left",
+
                           flexDirection:
-                            pathAfterSlash === "ar" && title === "Latest Projects"
+                            pathAfterSlash === "ar" &&
+                            title === "Latest Projects"
                               ? "row-reverse"
                               : "row",
                           display: pathAfterSlash === "ar" ? "flex" : "block",
@@ -178,18 +182,21 @@ const Section: FC<SectionProps> = ({
                       textAlign:
                         pathAfterSlash === "ar" && title !== "Latest Projects"
                           ? "initial !important"
-                          : pathAfterSlash === "ar" && title === "Latest Projects"
-                            ? "right"
-                            : "left",
+                          : pathAfterSlash === "ar" &&
+                            title === "Latest Projects"
+                          ? "right"
+                          : "left",
                     }}
-                    dangerouslySetInnerHTML={{ __html: item.description.slice(0, 320) }} // Render HTML
+                    dangerouslySetInnerHTML={{
+                      __html: item.description.slice(0, 320),
+                    }} // Render HTML
                   />
                 }
               />
               {withImage && item.image && (
                 <Box
                   sx={{
-                    marginBottom: '10px',
+                    marginBottom: "10px",
                     width: "100%",
                     maxWidth: { xs: "100%", md: "32%" },
                   }}
@@ -206,11 +213,8 @@ const Section: FC<SectionProps> = ({
                 </Box>
               )}
             </ListItem>
-          )
-        }
-
-
-        )}
+          );
+        })}
       </List>
     </Box>
   );

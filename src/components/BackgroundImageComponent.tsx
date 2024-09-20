@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: "12px",
   },
-  
 }));
 
 interface HomeDataType {
@@ -43,8 +42,9 @@ interface BackgroundImageComponentProps {
   HomeData: HomeDataType;
 }
 
-const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ HomeData }) => {
-
+const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({
+  HomeData,
+}) => {
   const classes = useStyles();
 
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
@@ -67,8 +67,8 @@ const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ Hom
       className={styles.container}
       style={{
         backgroundImage: backgroundImage,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className={styles.overlay}>
@@ -81,20 +81,18 @@ const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({ Hom
         >
           {HomeData?.web_site_settings?.main_header}
         </Typography>
-        <Link href={`/${pathAfterSlash}/contact`} passHref>
-
-        <CustomButton
-          onClick={handleClick}
-          customColor="white"
-          width="175px"
-          height="48px"
-          backgroundColor={colors.active}
-          borderRadius="4px"
-        >
-          {t("contactus")}
-        </CustomButton>
+        <Link href={`/${pathAfterSlash}/whoarewe`} passHref>
+          <CustomButton
+            onClick={handleClick}
+            customColor="white"
+            width="175px"
+            height="48px"
+            backgroundColor={colors.active}
+            borderRadius="4px"
+          >
+            {t("contactus")}
+          </CustomButton>
         </Link>
-
       </div>
     </div>
   );

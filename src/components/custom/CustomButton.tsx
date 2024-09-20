@@ -37,6 +37,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     borderColor: borderColor || "",
     border: "unset",
     fontSize: "18px",
+    cursor: "pointer",
   };
 
   return (

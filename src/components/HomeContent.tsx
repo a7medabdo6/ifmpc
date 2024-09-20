@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useAppSelector } from "@/lib/hooks";
 import { useTranslations } from "next-intl";
 import { makeStyles } from "@mui/styles";
-
+import ModalCom from "./ModalCom";
 const Section = dynamic(() => import("./custom/Section"), { ssr: false });
 
 const useStyles = makeStyles((theme) => ({
@@ -137,35 +137,38 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
   const t = useTranslations("HomePage");
 
   // تحويل المشاريع إلى نوع Item
-  const projectsItems: Item[] = HomeData?.projects?.map((project) => ({
-    id: project.id, // إضافة هذه القيم المطلوبة
-    date: project.created,
-    title: project.name,
-    description: project.content,
-    image: project.image,
-    Content: project.content, // إضافة خصائص إضافية إذا لزم الأمر
-    name: project.name, // إضافة خصائص إضافية إذا لزم الأمر
-    createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
-  })) || [];
+  const projectsItems: Item[] =
+    HomeData?.projects?.map((project) => ({
+      id: project.id, // إضافة هذه القيم المطلوبة
+      date: project.created,
+      title: project.name,
+      description: project.content,
+      image: project.image,
+      Content: project.content, // إضافة خصائص إضافية إذا لزم الأمر
+      name: project.name, // إضافة خصائص إضافية إذا لزم الأمر
+      createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
+    })) || [];
 
-  const publicatiosItems: Item[] = HomeData?.publication?.map((project) => ({
-    id: project.id, // إضافة هذه القيم المطلوبة
-    date: project.created,
-    title: project.name,
-    description: project.content,
-    image: project.image,
-    Content: project.content, // إضافة خصائص إضافية إذا لزم الأمر
-    name: project.name, // إضافة خصائص إضافية إذا لزم الأمر
-    createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
-  })) || [];
-  const trainingItems: Item[] = HomeData?.training?.map((project) => ({
-    id: project.id, // إضافة هذه القيم المطلوبة
-    date: project.created,
-    title: project.title,
-    description: project.description,
-    image: project.image,
-    createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
-  })) || [];
+  const publicatiosItems: Item[] =
+    HomeData?.publication?.map((project) => ({
+      id: project.id, // إضافة هذه القيم المطلوبة
+      date: project.created,
+      title: project.name,
+      description: project.content,
+      image: project.image,
+      Content: project.content, // إضافة خصائص إضافية إذا لزم الأمر
+      name: project.name, // إضافة خصائص إضافية إذا لزم الأمر
+      createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
+    })) || [];
+  const trainingItems: Item[] =
+    HomeData?.training?.map((project) => ({
+      id: project.id, // إضافة هذه القيم المطلوبة
+      date: project.created,
+      title: project.title,
+      description: project.description,
+      image: project.image,
+      createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
+    })) || [];
   return (
     <Box
       className={classes.root}
@@ -183,44 +186,38 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
       <Grid container spacing={4} dir={gridDirection}>
         <Grid item xs={12} md={7}>
           <Box className={classes.box}>
-            <Typography
-              variant="h5"
-              gutterBottom
-         
-              className={classes.title}
-            >
-              {t("LatestPublications")}
+            <Typography variant="h5" gutterBottom className={classes.title}>
+              {t("LatestProjects")}
             </Typography>
           </Box>
           <Section
             title="Latest Publications"
             items={publicatiosItems}
-            pathLink='Publications'
-
+            pathLink="Publications"
             top={true}
           />
         </Grid>
         <Grid item xs={12} md={1}></Grid>
         <Grid item xs={12} md={4}>
           <Box className={classes.box}>
-            <Typography
-              variant="h5"
-              gutterBottom
-            
-              className={classes.title}
-            >
+            <Typography variant="h5" gutterBottom className={classes.title}>
               {t("UpcomingTrainings")}
             </Typography>
           </Box>
+
           <Box>
-          <Section
-            title="Upcoming Trainings"
-            borderAll={true}
-            pathLink='Training'
-            items={trainingItems}
-                      />
+            <ModalCom
+              pdfUrl={"./training.pdf"}
+              component={
+                <Section
+                  title="Upcoming Trainings"
+                  borderAll={true}
+                  //   pathLink="Training"
+                  items={[trainingItems[0]]}
+                />
+              }
+            />
           </Box>
-         
         </Grid>
       </Grid>
 
@@ -231,7 +228,6 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
               display: "flex",
               justifyContent:
                 pathAfterSlash === "ar" ? "flex-end" : "flex-start",
-            
             }}
             variant="h5"
             gutterBottom
@@ -242,7 +238,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
         </Box>
         <Section
           title="Latest Projects"
-          pathLink='Projects'
+          pathLink="Projects"
           items={projectsItems}
           withImage
           top={true}
