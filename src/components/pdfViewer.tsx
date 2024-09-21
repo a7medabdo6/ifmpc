@@ -6,10 +6,14 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 // import "./Sample.css";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+const workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "./pdf.worker.min.mjs",
+//   import.meta.url
+// ).toString();
 
 const options = {
   cMapUrl: "/cmaps/",

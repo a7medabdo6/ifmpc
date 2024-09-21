@@ -13,10 +13,5 @@ const nextConfig = {
       "encrypted-tbn0.gstatic.com", // Add the new domain here
     ],
   },
-  webpack: (config) => {
-    config.resolve.alias.canvas = false;
-
-    return config;
-  },
 };
 export default withNextIntl(nextConfig);
