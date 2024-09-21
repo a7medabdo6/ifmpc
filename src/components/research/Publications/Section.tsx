@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: "12px",
   },
-  title: {
-  },
+  title: {},
 }));
 
 export interface Item {
@@ -103,16 +102,14 @@ const Section: FC<SectionProps> = ({
                 <Box
                   sx={{
                     display: "flex",
-                    alignItems:
-                     "flex-start",
+                    alignItems: "flex-start",
                     flexDirection: top ? "column" : "column-reverse",
                   }}
                 >
                   <Box
                     sx={{
                       display: "flex",
-                      alignItems:
-                       "flex-start",
+                      alignItems: "flex-start",
                       flexDirection:
                         pathAfterSlash === "ar" && title === "Latest Projects"
                           ? "row-reverse"
@@ -131,11 +128,10 @@ const Section: FC<SectionProps> = ({
                       sx={{
                         color: "#606060",
                         fontWeight: pathAfterSlash === "ar" ? 600 : "",
-                     
                       }}
                       component="span"
                     >
-                      {formatDate(item.date)}
+                      {formatDate(item?.date)}
                     </Typography>
                   </Box>
                   <Link
@@ -151,7 +147,7 @@ const Section: FC<SectionProps> = ({
                         color: "#476B87",
                         fontSize: "18px",
                         cursor: "pointer",
-                       
+
                         flexDirection:
                           pathAfterSlash === "ar" && title === "Latest Projects"
                             ? "row-reverse"
@@ -178,16 +174,17 @@ const Section: FC<SectionProps> = ({
                         : pathAfterSlash === "ar" && title === "Latest Projects"
                         ? "right"
                         : "left",
-                  
                   }}
-                  dangerouslySetInnerHTML={{ __html: item.description.slice(0, 320)  }} // Render HTML
+                  dangerouslySetInnerHTML={{
+                    __html: item.description.slice(0, 320),
+                  }} // Render HTML
                 />
               }
             />
             {withImage && item.image && (
               <Box
                 sx={{
-                  marginBottom:'10px',
+                  marginBottom: "10px",
 
                   width: "100%",
                   maxWidth: { xs: "100%", md: "32%" },

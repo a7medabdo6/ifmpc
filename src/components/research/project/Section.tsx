@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     padding: "12px",
   },
-  title: {
-  },
+  title: {},
 }));
 
 export interface Item {
@@ -110,9 +109,8 @@ const Section: FC<SectionProps> = ({
                 >
                   <Box
                     sx={{
-
                       display: "flex",
-                      width: '100%',
+                      width: "100%",
                       flexDirection:
                         pathAfterSlash === "ar" && title === "Latest Projects"
                           ? "row"
@@ -131,11 +129,10 @@ const Section: FC<SectionProps> = ({
                       sx={{
                         color: "#606060",
                         fontWeight: pathAfterSlash === "ar" ? 600 : "",
-
                       }}
                       component="span"
                     >
-                      {formatDate(item.date)}
+                      {formatDate(item?.date)}
                     </Typography>
                   </Box>
                   <Link href={`/en/research/${pathLink}/${item?.id}`} passHref>
@@ -173,18 +170,19 @@ const Section: FC<SectionProps> = ({
                       pathAfterSlash === "ar" && title !== "Latest Projects"
                         ? "initial !important"
                         : pathAfterSlash === "ar" && title === "Latest Projects"
-                          ? "right"
-                          : "left",
-
+                        ? "right"
+                        : "left",
                   }}
-                  dangerouslySetInnerHTML={{ __html: item.description.slice(0, 320) }} // Render HTML
+                  dangerouslySetInnerHTML={{
+                    __html: item.description.slice(0, 320),
+                  }} // Render HTML
                 />
               }
             />
             {withImage && item.image && (
               <Box
                 sx={{
-                  marginBottom: '10px',
+                  marginBottom: "10px",
 
                   width: "100%",
                   maxWidth: { xs: "100%", md: "32%" },
