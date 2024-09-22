@@ -30,11 +30,26 @@ const WhoAreWe: React.FC = () => {
         color: "#262626",
       }}
     >
-      <Box sx={{ marginBottom: "2rem", marginTop: "2rem" }}>
+      <Box sx={{ marginBottom: "1rem", marginTop: "2rem" }}>
+        <ModalCom
+          pdfUrl={"../road.pdf"}
+          component={
+            <CustomButton
+              customColor="white"
+              width="175px"
+              height="38px"
+              backgroundColor={colors.active}
+              borderRadius="8px"
+            >
+              {t("Our Vision")}
+            </CustomButton>
+          }
+        />
         <Typography
           variant="h5"
           gutterBottom
           sx={{
+            marginTop: "10px",
             fontWeight: 600,
             fontSize: "22px",
             color: "#262626",
@@ -52,21 +67,6 @@ const WhoAreWe: React.FC = () => {
           display: "flex",
         }}
       >
-        <ModalCom
-          pdfUrl={"../road.pdf"}
-          component={
-            <CustomButton
-              customColor="white"
-              width="175px"
-              height="38px"
-              backgroundColor={colors.active}
-              borderRadius="8px"
-            >
-              {t("Our Vision")}
-            </CustomButton>
-          }
-        />
-
         <Typography
           paragraph
           sx={{
