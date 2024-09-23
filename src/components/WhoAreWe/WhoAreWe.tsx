@@ -32,6 +32,7 @@ const WhoAreWe: React.FC = () => {
     >
       <Box sx={{ marginBottom: "1rem", marginTop: "2rem" }}>
         <ModalCom
+          isArabic={isArabic}
           pdfUrl={"../road.pdf"}
           component={
             <CustomButton

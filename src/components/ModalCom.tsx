@@ -42,7 +42,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   );
 }
 
-export default function ModalCom({ component, pdfUrl }: any) {
+export default function ModalCom({ component, pdfUrl, isArabic }: any) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -57,7 +57,13 @@ export default function ModalCom({ component, pdfUrl }: any) {
 
   return (
     <div>
-      <div style={{ cursor: "pointer" }} onClick={handleClickOpen}>
+      <div
+        style={{
+          cursor: "pointer",
+          textAlign: isArabic ? "right" : "left",
+        }}
+        onClick={handleClickOpen}
+      >
         {component}
       </div>
 
