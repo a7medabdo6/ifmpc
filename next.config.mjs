@@ -10,6 +10,7 @@ const nextConfig = {
       "buffer.com",
       "i.ytimg.com",
       "www.kptc.com.kw",
+      'ifpmc.fra1.digitaloceanspaces.com',
       "encrypted-tbn0.gstatic.com", // Add the new domain here
     ],
   },

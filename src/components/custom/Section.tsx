@@ -168,7 +168,7 @@ const Section: FC<SectionProps> = ({
                         }}
                         component="div"
                       >
-                        {item.title}
+                        {item?.title}
                       </Typography>
                     </Link>
                   </Box>
@@ -193,7 +193,7 @@ const Section: FC<SectionProps> = ({
                   />
                 }
               />
-              {withImage && item.image && (
+              {withImage && item?.image && (
                 <Box
                   sx={{
                     marginBottom: "10px",
@@ -203,8 +203,8 @@ const Section: FC<SectionProps> = ({
                 >
                   <ResponsiveImageWrapper>
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={item?.image}
+                      alt={item?.title}
                       style={{ width: "100%" }}
                       width={1200}
                       height={200}
