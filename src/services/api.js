@@ -248,6 +248,8 @@ export const fetchHome = async (lng) => {
     }
 
     const data = await response.json();
+    console.log(data,'8888888888888');
+    
     return data;
   } catch (error) {
     console.error("Error fetching home:", error.message);

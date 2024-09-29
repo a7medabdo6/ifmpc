@@ -28,6 +28,7 @@ const Home: FC = () => {
   const { data, status } = useAppSelector((state) => state.home);
   const categoriesData = useAppSelector((state) => state.categories.data);
   const lng = pathAfterSlash;
+  console.log(status,'8888888888888');
 
   useEffect(() => {
     if (lng) {
@@ -43,10 +44,19 @@ const Home: FC = () => {
   return (
     <div className="container" style={{ backgroundColor: colors.white }}>
       <Navbar />
-      <BackgroundImageComponent HomeData={data} />
+      {
+        status !== 'loading' ? (
+          <>
+           <BackgroundImageComponent HomeData={data} />
       <HomeContent HomeData={data} />
       <OurPartners />
       <NewsletterSubscription HomeData={data} />
+          </>
+        ):(
+          <LoadingIndicator />
+        )
+      }
+     
     </div>
   );
 };
