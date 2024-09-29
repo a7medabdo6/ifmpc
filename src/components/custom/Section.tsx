@@ -188,7 +188,7 @@ const Section: FC<SectionProps> = ({
                           : "left",
                     }}
                     dangerouslySetInnerHTML={{
-                      __html: item.description.slice(0, 320),
+                      __html: item?.description.slice(0, 320),
                     }} // Render HTML
                   />
                 }

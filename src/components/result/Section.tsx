@@ -141,7 +141,7 @@ const Section: FC<SectionProps> = ({
                       }}
                       component="span"
                     >
-                      {formatDate(item.created)}
+                      {formatDate(item?.created)}
                     </Typography>
                   </Box>
                   <Link href={`/${pathAfterSlash}/research/${item?.image ? "Projects" : "Publications"}/${item?.id}`} passHref>
@@ -162,7 +162,7 @@ const Section: FC<SectionProps> = ({
                       }}
                       component="div"
                     >
-                      {item.name}
+                      {item?.name}
                     </Typography>
                   </Link>
                 </Box>
@@ -182,12 +182,12 @@ const Section: FC<SectionProps> = ({
                   }}
                   className={classes.title}
                   dangerouslySetInnerHTML={{
-                    __html: item.content.slice(0, 320),
+                    __html: item?.content.slice(0, 320),
                   }} // عرض المحتوى كـ HTML
                 />
               }
             />
-            {withImage && item.image && (
+            {withImage && item?.image && (
               <Box
                 sx={{
                   width: "100%",
@@ -197,8 +197,8 @@ const Section: FC<SectionProps> = ({
               >
                 <ResponsiveImageWrapper>
                   <Image
-                    src={item.image}
-                    alt={item.name}
+                    src={item?.image}
+                    alt={item?.name}
                     layout="fill"
                     objectFit="cover"
                   />
