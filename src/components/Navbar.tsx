@@ -236,7 +236,8 @@ const routerHome =()=>{
          
           className={classes.title}
         >
-          {t("events")}
+                    {t("training")}
+
         </Typography>
       </StyledLink>
       <StyledLink
@@ -251,8 +252,8 @@ const routerHome =()=>{
         
           className={classes.title}
         >
-          {t("training")}
-        </Typography>
+          {t("events")}
+          </Typography>
       </StyledLink>
       {/* <StyledLink
         href={`/${pathAfterSlash}/podcast`}
@@ -544,7 +545,7 @@ const routerHome =()=>{
                   
                     className={classes.title}
                   >
-                    العربيه
+                    العربية
                   </MenuItem>
                 </Menu>
               </div>

@@ -353,7 +353,7 @@ export const fetchEvents = async (lng) => {
 };
 
 export const fetchTrainingLast = async (lng) => {
-  const apiUrl = `${baseUrl}/trainings/last/`;
+  const apiUrl = `${baseUrl}/trainings/`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",

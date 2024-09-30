@@ -33,11 +33,12 @@ const Content: React.FC<ContentProps> = ({ des, title }) => {
     <Box display="flex">
       <Box sx={{ marginBottom: '10px', textAlign: pathAfterSlash === 'ar' ? 'end' : 'start' }}>
         <Typography variant="body1" component="p" className={classes.title} sx={{
-          fontWeight: 600,
+          fontWeight: 600
         }}>
           {title}
         </Typography>
         <Typography variant="body2" className={classes.des} sx={{  color: '#262626 !important',marginTop:'5px' }}>
+          
           {des}
         </Typography>
       </Box>
