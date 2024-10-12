@@ -8,9 +8,10 @@ const nextConfig = {
     domains: [
       "ifpmcf.s3.amazonaws.com",
       "buffer.com",
+      "backend.ifpmc.org",
       "i.ytimg.com",
       "www.kptc.com.kw",
-      'ifpmc.fra1.digitaloceanspaces.com',
+      "ifpmc.fra1.digitaloceanspaces.com",
       "encrypted-tbn0.gstatic.com", // Add the new domain here
     ],
   },
