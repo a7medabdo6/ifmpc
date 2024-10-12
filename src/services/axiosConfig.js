@@ -1,7 +1,7 @@
 // services/axiosConfig.js
 import axios from "axios";
 
-const API_BASE_URL = "http://54.93.53.203:8000/api"; // Replace with your API base URL
+const API_BASE_URL = "https://backend.ifpmc.org/api"; // Replace with your API base URL
 
 const api = axios.create({
   baseURL: API_BASE_URL,
