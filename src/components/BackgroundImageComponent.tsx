@@ -42,9 +42,7 @@ interface BackgroundImageComponentProps {
   HomeData: HomeDataType;
 }
 
-const BackgroundImageComponent: React.FC<BackgroundImageComponentProps> = ({
-  HomeData,
-}) => {
+const BackgroundImageComponent: React.FC<any> = ({ HomeData }) => {
   const classes = useStyles();
 
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);

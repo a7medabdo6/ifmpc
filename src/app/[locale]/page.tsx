@@ -10,7 +10,7 @@ import OurPartners from "@/components/OurPartners";
 import StoreProvider from "./StoreProvider";
 import { updateFloor } from "@/lib/features/bookSlice";
 import { useAppSelector, useAppDispatch, useAppStore } from "@/lib/hooks";
-import { fetchHome } from "../../services/api";
+import { fetchHome, FetchHomeData } from "../../services/api";
 
 import { colors } from "@/utils/colors";
 import { fetchHomeData } from "@/lib/features/homeSlice";
@@ -26,20 +26,20 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
   const [loader, setloader] = useState(true);
-  const { data, status } = useAppSelector((state) => state.home);
+  const [data, setdata] = useState(null);
   const categoriesData = useAppSelector((state) => state.categories.data);
   const lng = pathAfterSlash;
-  // console.log(status, '8888888888888');
 
-  useEffect(() => {
+  const FetchData = async () => {
     if (lng) {
       dispatch(fetchCategoriesData(lng)); // Pass the language code you need
+      const data = await FetchHomeData(lng);
+      setdata(data);
+      // console.log(data, "dataaa CLIENT");
     }
-  }, [dispatch, lng]);
+  };
   useEffect(() => {
-    if (lng) {
-      dispatch(fetchHomeData(lng));
-    }
+    FetchData();
   }, [lng]);
   useEffect(() => {
     if (hasKey(data, "categories")) {

@@ -90,11 +90,12 @@ export const homeSlice = createSlice({
         state.data = action.payload;
 
         const dataToStore = JSON.stringify(action.payload);
-        if (dataToStore.length < 5 * 1024 * 1024) { // التحقق من الحجم قبل التخزين
-            localStorage.setItem("homeData", dataToStore);
+        if (dataToStore.length < 5 * 1024 * 1024) {
+          // التحقق من الحجم قبل التخزين
+          localStorage.setItem("homeData", dataToStore);
         } else {
-            console.warn("Data too large for localStorage, not saving.");
-            // يمكن اختيارياً مسح البيانات القديمة أو التعامل مع الأمر وفقًا لذلك
+          console.warn("Data too large for localStorage, not saving.");
+          // يمكن اختيارياً مسح البيانات القديمة أو التعامل مع الأمر وفقًا لذلك
         }
       })
       .addCase(fetchHomeData.rejected, (state, action) => {

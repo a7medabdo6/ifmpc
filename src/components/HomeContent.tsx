@@ -132,7 +132,7 @@ interface Item {
   createdts?: string; // إذا كان هذا الحقل اختياري
 }
 
-const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
+const HomeContent: React.FC<any> = ({ HomeData }) => {
   const classes = useStyles();
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
   const gridDirection = pathAfterSlash === "ar" ? "rtl" : "ltr";
@@ -140,7 +140,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
 
   // تحويل المشاريع إلى نوع Item
   const projectsItems: Item[] =
-    HomeData?.projects?.map((project) => ({
+    HomeData?.projects?.map((project: any) => ({
       id: project.id, // إضافة هذه القيم المطلوبة
       date: project.created,
       title: project.name,
@@ -152,7 +152,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
     })) || [];
 
   const publicatiosItems: Item[] =
-    HomeData?.publication?.map((project) => ({
+    HomeData?.publication?.map((project: any) => ({
       id: project.id, // إضافة هذه القيم المطلوبة
       date: project.created,
       title: project.name,
@@ -163,7 +163,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
       createdts: project.created, // إضافة خصائص إضافية إذا لزم الأمر
     })) || [];
   const trainingItems: Item[] =
-    HomeData?.training?.map((project) => ({
+    HomeData?.training?.map((project: any) => ({
       id: project.id, // إضافة هذه القيم المطلوبة
       date: project.created,
       title: project.title,

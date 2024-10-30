@@ -38,8 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     marginBottom: "15px",
   },
-  title: {
-  },
+  title: {},
 }));
 
 interface HomeDataType {
@@ -64,9 +63,7 @@ interface NewsletterSubscriptionProps {
   HomeData: HomeDataType;
 }
 
-const NewsletterSubscription: React.FC<NewsletterSubscriptionProps> = ({
-  HomeData,
-}) => {
+const NewsletterSubscription: React.FC<any> = ({ HomeData }) => {
   const classes = useStyles();
   const t = useTranslations("Subscribe");
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);

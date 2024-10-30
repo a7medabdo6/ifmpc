@@ -231,7 +231,33 @@ export const fetchQuestions = async (lng) => {
     };
   }
 };
+export const FetchHomeData = async (lng) => {
+  const apiUrl = `${baseUrl}/home/`;
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+      // next: {
+      //   revalidate: 20,
+      // },
 
+      headers: {
+        "Accept-Language": lng,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    // setTimeout(() => {
+    //   return data;
+    // }, 1000);
+    return data;
+  } catch (error) {
+    //throw new Error(error);
+  }
+};
 export const fetchHome = async (lng) => {
   const apiUrl = `${baseUrl}/home/`;
   try {
@@ -248,8 +274,8 @@ export const fetchHome = async (lng) => {
     }
 
     const data = await response.json();
-    console.log(data,'8888888888888');
-    
+    console.log(data, "8888888888888");
+
     return data;
   } catch (error) {
     console.error("Error fetching home:", error.message);
@@ -379,7 +405,7 @@ export const fetchTrainingLast = async (lng) => {
   }
 };
 
-export const fetchMostRecentProjects = async (lng,offset = 0, limit = 5) => {
+export const fetchMostRecentProjects = async (lng, offset = 0, limit = 5) => {
   const apiUrl = `${baseUrl}/projects/?sort=-id&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
@@ -389,7 +415,6 @@ export const fetchMostRecentProjects = async (lng,offset = 0, limit = 5) => {
         "Accept-Language": lng,
       },
     });
-    
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -407,7 +432,7 @@ export const fetchMostRecentProjects = async (lng,offset = 0, limit = 5) => {
   }
 };
 
-export const fetchMostPopularProjects = async (lng,offset = 0, limit = 5) => {
+export const fetchMostPopularProjects = async (lng, offset = 0, limit = 5) => {
   const apiUrl = `${baseUrl}/projects/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
@@ -434,7 +459,11 @@ export const fetchMostPopularProjects = async (lng,offset = 0, limit = 5) => {
   }
 };
 
-export const fetchMostRecentPublications = async (lng,offset = 0, limit = 5) => {
+export const fetchMostRecentPublications = async (
+  lng,
+  offset = 0,
+  limit = 5
+) => {
   const apiUrl = `${baseUrl}/publications/?sort=-id&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
@@ -461,7 +490,11 @@ export const fetchMostRecentPublications = async (lng,offset = 0, limit = 5) => 
   }
 };
 
-export const fetchMostPopularPublications = async (lng,offset = 0, limit = 5) => {
+export const fetchMostPopularPublications = async (
+  lng,
+  offset = 0,
+  limit = 5
+) => {
   const apiUrl = `${baseUrl}/publications/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
   try {
     const response = await fetch(apiUrl, {
@@ -598,7 +631,6 @@ export const createSubscribe = async (data, lng) => {
 };
 
 export const fetchOurPartners = async (lng) => {
-
   const apiUrl = `${baseUrl}/settings/our-partners/`;
   try {
     const response = await fetch(apiUrl, {
