@@ -22,11 +22,11 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
   const { data, status, error } = useAppSelector((state) => state.home);
 
-  useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchHomeData("en"));
-    }
-  }, [dispatch, status]);
+  // useEffect(() => {
+  //   if (status === "idle") {
+  //     dispatch(fetchHomeData("en"));
+  //   }
+  // }, [dispatch, status]);
 
   return (
     <div className="container" style={{ backgroundColor: colors.white }}>

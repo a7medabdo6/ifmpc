@@ -40,10 +40,8 @@ const Home: FC = () => {
     if (lng) {
       dispatch(fetchHomeData(lng));
     }
-  }, [dispatch, status, lng]);
+  }, [lng]);
   useEffect(() => {
-    console.log(data, "dattttt");
-
     if (hasKey(data, "categories")) {
       setloader(false);
     }
