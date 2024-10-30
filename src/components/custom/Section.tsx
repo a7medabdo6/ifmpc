@@ -138,7 +138,7 @@ const Section: FC<SectionProps> = ({
                         }}
                         component="span"
                       >
-                        {formatDate(item?.created)}
+                        {formatDate(item?.date)}
                       </Typography>
                     </Box>
                     <Link

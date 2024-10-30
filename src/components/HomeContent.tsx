@@ -194,7 +194,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
           </Box>
           <Section
             title="Latest Publications"
-            items={HomeData?.publication}
+            items={publicatiosItems}
             pathLink="Publications"
             top={true}
           />
@@ -241,7 +241,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
         <Section
           title="Latest Projects"
           pathLink="Projects"
-          items={HomeData?.projects}
+          items={projectsItems}
           withImage
           top={true}
         />
