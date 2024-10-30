@@ -62,7 +62,7 @@ const OurPartners: React.FC = () => {
     loadPartners();
   }, [lng]);
 
-  if (loading) return <LoadingIndicator />;
+  // if (loading) return <LoadingIndicator />;
   if (error) return <ErrorComponent message={error} />;
 
   return (

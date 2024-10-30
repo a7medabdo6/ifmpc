@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import {
   Box,
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export interface Item {
   id: any;
-  date: string;
+  created: string;
   title: string;
   description: string;
   image?: string | StaticImageData;
@@ -47,7 +48,7 @@ const ResponsiveImageWrapper = styled.div`
 
 interface SectionProps {
   title: string;
-  items: Item[];
+  items: any;
   withImage?: boolean;
   top?: boolean;
   pathLink?: string;
@@ -82,7 +83,7 @@ const Section: FC<SectionProps> = ({
   return (
     <Box>
       <List>
-        {items.slice(0, 4).map((item, index) => {
+        {items?.slice(0, 4).map((item: any, index: any) => {
           const isFourthItem = index === 3; // العنصر الرابع (المؤشر 3)
 
           return (
@@ -137,7 +138,7 @@ const Section: FC<SectionProps> = ({
                         }}
                         component="span"
                       >
-                        {formatDate(item?.date)}
+                        {formatDate(item?.created)}
                       </Typography>
                     </Box>
                     <Link
@@ -188,7 +189,9 @@ const Section: FC<SectionProps> = ({
                           : "left",
                     }}
                     dangerouslySetInnerHTML={{
-                      __html: item?.description.slice(0, 320),
+                      __html:
+                        item?.description?.slice(0, 320) ||
+                        item?.content?.slice(0, 320),
                     }} // Render HTML
                   />
                 }

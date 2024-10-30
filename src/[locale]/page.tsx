@@ -12,10 +12,11 @@ import { useAppSelector, useAppDispatch, useAppStore } from "@/lib/hooks";
 
 import { colors } from "@/utils/colors";
 import { fetchHomeData } from "@/lib/features/homeSlice";
+import HomeContent from "@/components/HomeContent";
 
-const HomeContent = dynamic(() => import("@/components/HomeContent"), {
-  ssr: false,
-});
+// const HomeContent = dynamic(() => import("@/components/HomeContent"), {
+//   ssr: false,
+// });
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();

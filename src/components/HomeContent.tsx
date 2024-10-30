@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { projects, trainings, publications } from "../data/homeData";
@@ -6,7 +7,8 @@ import { useAppSelector } from "@/lib/hooks";
 import { useTranslations } from "next-intl";
 import { makeStyles } from "@mui/styles";
 import ModalCom from "./ModalCom";
-const Section = dynamic(() => import("./custom/Section"), { ssr: false });
+import Section from "./custom/Section";
+// const Section = dynamic(() => import("./custom/Section"), { ssr: false });
 
 const useStyles = makeStyles((theme) => ({
   root: { marginTop: "80px" },
@@ -192,7 +194,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
           </Box>
           <Section
             title="Latest Publications"
-            items={publicatiosItems}
+            items={HomeData?.publication}
             pathLink="Publications"
             top={true}
           />
@@ -213,7 +215,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
                   title="Upcoming Trainings"
                   borderAll={true}
                   //   pathLink="Training"
-                  items={[trainingItems[0]]}
+                  items={[HomeData?.training?.[0]]}
                 />
               }
             />
@@ -239,7 +241,7 @@ const HomeContent: React.FC<HomeContentProps> = ({ HomeData }) => {
         <Section
           title="Latest Projects"
           pathLink="Projects"
-          items={projectsItems}
+          items={HomeData?.projects}
           withImage
           top={true}
         />

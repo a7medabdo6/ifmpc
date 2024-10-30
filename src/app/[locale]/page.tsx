@@ -17,18 +17,19 @@ import { fetchHomeData } from "@/lib/features/homeSlice";
 import LoadingIndicator from "@/components/custom/LoadingIndicator";
 import ErrorComponent from "@/components/custom/ErrorComponent";
 import { fetchCategoriesData } from "@/lib/features/categoriesSlice";
-const HomeContent = dynamic(() => import("@/components/HomeContent"), {
-  ssr: false,
-});
+import HomeContent from "@/components/HomeContent";
+// const HomeContent = dynamic(() => import("@/components/HomeContent"), {
+//   ssr: false,
+// });
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
   const pathAfterSlash = useAppSelector((state) => state.path.pathAfterSlash);
-
+  const [loader, setloader] = useState(true);
   const { data, status } = useAppSelector((state) => state.home);
   const categoriesData = useAppSelector((state) => state.categories.data);
   const lng = pathAfterSlash;
-  console.log(status, '8888888888888');
+  // console.log(status, '8888888888888');
 
   useEffect(() => {
     if (lng) {
@@ -36,27 +37,39 @@ const Home: FC = () => {
     }
   }, [dispatch, lng]);
   useEffect(() => {
-    if (status === "idle" && lng) {
+    if (lng) {
       dispatch(fetchHomeData(lng));
     }
   }, [dispatch, status, lng]);
+  useEffect(() => {
+    console.log(data, "dattttt");
 
+    if (hasKey(data, "categories")) {
+      setloader(false);
+    }
+  }, [data]);
+  const hasKey = (obj: any, key: any) => {
+    return obj.hasOwnProperty(key);
+  };
   return (
     <div className="container" style={{ backgroundColor: colors.white }}>
       <Navbar />
-      {
-        status !== 'loading' ? (
-          <>
-            <BackgroundImageComponent HomeData={data} />
-            <HomeContent HomeData={data} />
-            <OurPartners />
-            <NewsletterSubscription HomeData={data} />
-          </>
-        ) : (
+      {!loader ? (
+        <>
+          <BackgroundImageComponent HomeData={data} />
+          <HomeContent HomeData={data} />
+          <OurPartners />
+          <NewsletterSubscription HomeData={data} />
+        </>
+      ) : (
+        <>
           <LoadingIndicator />
-        )
-      }
-
+          {/* <BackgroundImageComponent HomeData={data} />
+          <HomeContent HomeData={data} />
+          <OurPartners />
+          <NewsletterSubscription HomeData={data} /> */}
+        </>
+      )}
     </div>
   );
 };
