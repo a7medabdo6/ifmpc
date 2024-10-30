@@ -49,7 +49,7 @@ const Home: FC = () => {
     }
   }, [data]);
   const hasKey = (obj: any, key: any) => {
-    return obj.hasOwnProperty(key);
+    return obj?.hasOwnProperty(key);
   };
   return (
     <div className="container" style={{ backgroundColor: colors.white }}>
