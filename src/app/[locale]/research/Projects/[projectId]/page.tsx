@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     marginTop: "50px",
   },
+
   bigContainer: {
     maxWidth: "100%", // تعيين عرض الحاوية ليأخذ المساحة القصوى المحتملة
   },
@@ -47,15 +48,16 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const lng = pathAfterSlash;
-  const [tags,setTags]= useState([])
+  const [tags, setTags] = useState([]);
 
-useEffect(()=>{
-  if(oneProject){
-    const dataTags = oneProject.tags.map((i: { name: any; })=>{return(i.name)})
-    setTags(dataTags)
-    
-  }
-},[oneProject])
+  useEffect(() => {
+    if (oneProject) {
+      const dataTags = oneProject.tags.map((i: { name: any }) => {
+        return i.name;
+      });
+      setTags(dataTags);
+    }
+  }, [oneProject]);
   useEffect(() => {
     const getProject = async () => {
       try {
@@ -91,11 +93,7 @@ useEffect(()=>{
     t("Outdoor Sales"),
   ];
 
-
-
   const componentRef = useRef<HTMLDivElement | null>(null); // Properly typed ref
-
-
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -126,19 +124,18 @@ useEffect(()=>{
     `,
   });
 
-
-
-
   if (loading) return <LoadingIndicator />;
   if (fetchError) return <ErrorComponent message={fetchError} />;
   return (
     <Box className={classes.bigContainer} sx={{ backgroundColor: "#ffffff" }}>
       <Navbar />
 
-      <Box
-        className={classes.content}>
-        <Header handlePrint={handlePrint}
-          handleDownloadPDF={generatePDFProject} oneProject={oneProject} />{" "}
+      <Box className={`${classes.content} no-padding-at-sm`}>
+        <Header
+          handlePrint={handlePrint}
+          handleDownloadPDF={generatePDFProject}
+          oneProject={oneProject}
+        />{" "}
         <Grid
           container
           spacing={3}
@@ -148,7 +145,11 @@ useEffect(()=>{
             <ArticleSection
               componentRef={componentRef}
               title={t("Article")}
-              content={pathAfterSlash === "ar" ? oneProject?.content_ar : oneProject?.content_en}
+              content={
+                pathAfterSlash === "ar"
+                  ? oneProject?.content_ar
+                  : oneProject?.content_en
+              }
             />
             <RelatedTopics />
           </Grid>

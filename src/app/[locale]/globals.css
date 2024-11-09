@@ -164,3 +164,11 @@ a {
 .header-right input{
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .no-padding-at-sm{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  
+  }
+}
