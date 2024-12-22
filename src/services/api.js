@@ -737,3 +737,33 @@ export const fetchPublicationById = async (id, lng) => {
     };
   }
 };
+
+
+export const fetchServices = async (lng) => {
+  const apiUrl = `${baseUrl}/services/primary/`;
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Accept-Language": lng,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data, "8888888888888");
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching home:", error.message);
+    return {
+      props: {
+        data: {},
+      },
+    };
+  }
+};
