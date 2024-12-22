@@ -79,25 +79,27 @@ const Page = () => {
 
   const [offset, setOffset] = useState(0);
   const limit = 10;
-  useEffect(() => {
-    const loadMostRecent = async () => {
-      try {
-        const data = await fetchMostRecentProjects(lng, offset, limit);
-        setMostRecent(data?.results || []);
-        setCount(data?.count || 0)
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unexpected error occurred.");
-        }
-      } finally {
-        setLoading(false);
+  const loadMostRecent = async () => {
+    try {
+      const data = await fetchMostRecentProjects(lng, offset, limit);
+      setMostRecent(data?.results || []);
+      setCount(data?.count || 0)
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
       }
-    };
-    if( lng)
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+   
+    if( lng){
 
-    loadMostRecent();
+    }
+
   }, [lng,offset,tabClicks]);
   useEffect(() => {
     const loadMostPobular = async () => {
@@ -160,6 +162,7 @@ const Page = () => {
       .filter((it) => newCheckedItems[it.id])
       .map((it) => `${it.label} (${it.projectCount})`);
     setTextFieldValue(checkedValues.join(", "));
+    loadMostRecent()
   };
 
   useEffect(() => {
