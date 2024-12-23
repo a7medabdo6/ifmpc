@@ -22,7 +22,7 @@ const CustomCard: React.FC<CardProps> = ({ imageSrc, title, description }) => {
           transform: "translateY(-5px)",
           boxShadow: "0 6px 10px rgba(0, 0, 0, 0.15)",
         },
-        minHeight:'180px'
+        minHeight: "180px",
       }}
     >
       <Box
@@ -53,9 +53,6 @@ const CustomCard: React.FC<CardProps> = ({ imageSrc, title, description }) => {
       >
         {title}
       </Typography>
-      {/* <Typography variant="body2" color="#555">
-        {description}
-      </Typography> */}
     </Card>
   );
 };
