@@ -35,7 +35,7 @@ const Home: FC = () => {
   const [loading, setLoading] = useState(true);
 
   const FetchData = async () => {
-    if (lng) {
+    if (lng == "ar" || lng == "en") {
       dispatch(fetchCategoriesData(lng)); // Pass the language code you need
       const data = await FetchHomeData(lng);
       setdata(data);
@@ -51,7 +51,6 @@ const Home: FC = () => {
     }
   }, [data]);
   const [dataService, setDataService] = useState<any>(null);
-  console.log(dataService);
   useEffect(() => {
     const getPublication = async () => {
       try {
@@ -69,18 +68,18 @@ const Home: FC = () => {
   const hasKey = (obj: any, key: any) => {
     return obj?.hasOwnProperty(key);
   };
-  // if (loading) return <LoadingIndicator />;
-  // if (fetchError) return <ErrorComponent message={fetchError} />;
+  if (loading) return <LoadingIndicator />;
+  if (fetchError) return <ErrorComponent message={fetchError} />;
   return (
     <div className="container" style={{ backgroundColor: colors.white }}>
       <Navbar />
-      {loader ? (
+      {!loader ? (
         <>
-          {/* <BackgroundImageComponent HomeData={data} /> */}
+          <BackgroundImageComponent HomeData={data} />
           <Services dataService={dataService} />
-          {/* <HomeContent HomeData={data} />
+          <HomeContent HomeData={data} />
           <OurPartners />
-          <NewsletterSubscription HomeData={data} /> */}
+          <NewsletterSubscription HomeData={data} />
         </>
       ) : (
         <>
