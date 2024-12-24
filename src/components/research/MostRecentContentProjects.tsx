@@ -11,10 +11,10 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   content: {
-    padding: "12px", // تعيين تباعد داخلي للمحتوى
+    padding: "12px", 
   },
   bigContainer: {
-    maxWidth: "100%", // تعيين عرض الحاوية ليأخذ المساحة القصوى المحتملة
+    maxWidth: "100%",
   },
   title: {
   },

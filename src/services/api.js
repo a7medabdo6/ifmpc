@@ -274,7 +274,6 @@ export const fetchHome = async (lng) => {
     }
 
     const data = await response.json();
-    console.log(data, "8888888888888");
 
     return data;
   } catch (error) {
@@ -405,8 +404,68 @@ export const fetchTrainingLast = async (lng) => {
   }
 };
 
-export const fetchMostRecentProjects = async (lng, offset = 0, limit = 5) => {
-  const apiUrl = `${baseUrl}/projects/?sort=-id&limit=${limit}&offset=${offset}`;
+// export const fetchMostRecentProjects = async (lng, offset = 0, limit = 5) => {
+//   const apiUrl = `${baseUrl}/projects/?sort=-id&limit=${limit}&offset=${offset}`;
+//   try {
+//     const response = await fetch(apiUrl, {
+//       method: "GET",
+//       cache: "no-store",
+//       headers: {
+//         "Accept-Language": lng,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching most recent projects:", error.message);
+//     return {
+//       props: {
+//         data: {},
+//       },
+//     };
+//   }
+// };
+
+// export const fetchMostPopularProjects = async (lng, offset = 0, limit = 5) => {
+//   const apiUrl = `${baseUrl}/projects/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
+//   try {
+//     const response = await fetch(apiUrl, {
+//       method: "GET",
+//       cache: "no-store",
+//       headers: {
+//         "Accept-Language": lng,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching most popular projects:", error.message);
+//     return {
+//       props: {
+//         data: {},
+//       },
+//     };
+//   }
+// };
+
+export const fetchMostRecentProjects = async (
+  lng,
+  offset = 0,
+  limit = 5,
+  categoriesrResult = [] // Accept categories as an array
+) => {
+  const categoryParam = categoriesrResult.length > 0 ? `&categories_projects=${categoriesrResult.join('%2C')}` : '';
+  const apiUrl = `${baseUrl}/projects/?sort=-id&limit=${limit}&offset=${offset}${categoryParam}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -432,8 +491,14 @@ export const fetchMostRecentProjects = async (lng, offset = 0, limit = 5) => {
   }
 };
 
-export const fetchMostPopularProjects = async (lng, offset = 0, limit = 5) => {
-  const apiUrl = `${baseUrl}/projects/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
+export const fetchMostPopularProjects = async (
+  lng,
+  offset = 0,
+  limit = 5,
+  categoriesrResult = [] // Accept categories as an array
+) => {
+  const categoryParam = categoriesrResult.length > 0 ? `&categories_projects=${categoriesrResult.join('%2C')}` : '';
+  const apiUrl = `${baseUrl}/projects/?sort=-popularity_count&limit=${limit}&offset=${offset}${categoryParam}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -458,13 +523,15 @@ export const fetchMostPopularProjects = async (lng, offset = 0, limit = 5) => {
     };
   }
 };
-
 export const fetchMostRecentPublications = async (
   lng,
   offset = 0,
-  limit = 5
+  limit = 5,
+  categoriesrResult = [] // Accept categories as an array
 ) => {
-  const apiUrl = `${baseUrl}/publications/?sort=-id&limit=${limit}&offset=${offset}`;
+  const categoryParam = categoriesrResult.length > 0 ? `&category=${categoriesrResult.join('%2C')}` : '';
+  const apiUrl = `${baseUrl}/publications/?sort=-id&limit=${limit}&offset=${offset}${categoryParam}`;
+
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -493,9 +560,12 @@ export const fetchMostRecentPublications = async (
 export const fetchMostPopularPublications = async (
   lng,
   offset = 0,
-  limit = 5
+  limit = 5,
+  categoriesrResult = [] // Accept categories as an array
 ) => {
-  const apiUrl = `${baseUrl}/publications/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
+  const categoryParam = categoriesrResult.length > 0 ? `&category=${categoriesrResult.join('%2C')}` : '';
+  const apiUrl = `${baseUrl}/publications/?sort=-popularity_count&limit=${limit}&offset=${offset}${categoryParam}`;
+
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -520,6 +590,69 @@ export const fetchMostPopularPublications = async (
     };
   }
 };
+
+
+// export const fetchMostRecentPublications = async (
+//   lng,
+//   offset = 0,
+//   limit = 5
+// ) => {
+//   const apiUrl = `${baseUrl}/publications/?sort=-id&limit=${limit}&offset=${offset}`;
+//   try {
+//     const response = await fetch(apiUrl, {
+//       method: "GET",
+//       cache: "no-store",
+//       headers: {
+//         "Accept-Language": lng,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching most recent publications:", error.message);
+//     return {
+//       props: {
+//         data: {},
+//       },
+//     };
+//   }
+// };
+
+// export const fetchMostPopularPublications = async (
+//   lng,
+//   offset = 0,
+//   limit = 5
+// ) => {
+//   const apiUrl = `${baseUrl}/publications/?sort=-popularity_count&limit=${limit}&offset=${offset}`;
+//   try {
+//     const response = await fetch(apiUrl, {
+//       method: "GET",
+//       cache: "no-store",
+//       headers: {
+//         "Accept-Language": lng,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching most popular publications:", error.message);
+//     return {
+//       props: {
+//         data: {},
+//       },
+//     };
+//   }
+// };
 
 export const fetchContacts = async (lng) => {
   const apiUrl = `${baseUrl}/contacts/`;

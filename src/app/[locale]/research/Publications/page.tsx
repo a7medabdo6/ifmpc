@@ -78,7 +78,8 @@ const Page = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const { data } = useAppSelector((state) => state.home);
   const [tabClicks, setTabClicks] = React.useState<number[]>([0, 0, 0]);
-
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const [textFieldValue, setTextFieldValue] = useState<string>("");
   // Specify types for state variables
   const [MostRecent, setMostRecent] = useState<Publication[]>([]);
   const [MostPobular, setMostPobular] = useState<Publication[]>([]);
@@ -95,10 +96,18 @@ const Page = () => {
 
   const [offset, setOffset] = useState(0);
   const limit = 10;
+  const extractNumbers = (checkedItems: Record<string, boolean>): number[] => {
+    return Object.keys(checkedItems).filter(key => checkedItems[key]).map(Number);
+  };
+  
+  
+  
+  const categoriesrResult = extractNumbers(checkedItems);
+  console.log(categoriesrResult); // Output: 38,40,44  
   useEffect(() => {
     const loadMostRecent = async () => {
       try {
-        const data = await fetchMostRecentPublications(lng, offset, limit);
+        const data = await fetchMostRecentPublications(lng, offset, limit,categoriesrResult);
         setMostRecent(data?.results || []);
       } catch (err) {
         if (err instanceof Error) {
@@ -113,14 +122,13 @@ const Page = () => {
     if( lng)
 
     loadMostRecent();
-  }, [lng,offset,tabClicks]);
-
+  }, [lng,offset,tabClicks,checkedItems]);
+ 
   useEffect(() => {
     const loadMostPobular = async () => {
-      console.log("44444");
       
       try {
-        const data = await fetchMostPopularPublications(lng, offset, limit);
+        const data = await fetchMostPopularPublications(lng, offset, limit,categoriesrResult);
         setMostPobular(data?.results || []);
         setCount(data?.count || 0)
 
@@ -136,7 +144,7 @@ const Page = () => {
     };
 if( lng)
     loadMostPobular();
-  }, [lng,offset,tabClicks]);
+  }, [lng,offset,tabClicks,checkedItems]);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -159,8 +167,7 @@ if( lng)
     loadCategories();
   }, [lng]);
 
-  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
-  const [textFieldValue, setTextFieldValue] = useState<string>("");
+ 
 
   const items = categories?.map((category) => ({
     id: category.id,
@@ -208,6 +215,7 @@ if( lng)
   const handlePrevious = async () => {
     setOffset(prevOffset => (prevOffset - limit >= 0 ? prevOffset - limit : 0));
   };
+
   if (loading) return <LoadingIndicator />;
   if (error) return <ErrorComponent message={error} />;
   return (

@@ -68,7 +68,6 @@ const Page = () => {
   const [filteredMostRecent, setFilteredMostRecent] = useState<Publication[]>(
     []
   );
-  
   const [filteredMostPobular, setFilteredMostPobular] = useState<Publication[]>(
     []
   );
@@ -79,32 +78,42 @@ const Page = () => {
 
   const [offset, setOffset] = useState(0);
   const limit = 10;
-  const loadMostRecent = async () => {
-    try {
-      const data = await fetchMostRecentProjects(lng, offset, limit);
-      setMostRecent(data?.results || []);
-      setCount(data?.count || 0)
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("An unexpected error occurred.");
-      }
-    } finally {
-      setLoading(false);
-    }
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const [textFieldValue, setTextFieldValue] = useState<string>("");
+  const extractNumbers = (checkedItems: Record<string, boolean>): number[] => {
+    return Object.keys(checkedItems).filter(key => checkedItems[key]).map(Number);
   };
+  
+  
+  
+  const categoriesrResult = extractNumbers(checkedItems);
   useEffect(() => {
-   
+    const loadMostRecent = async () => {
+      try {
+        const data = await fetchMostRecentProjects(lng, offset, limit,categoriesrResult);
+        console.log(data?.results);
+  
+        setMostRecent(data?.results || []);
+        setCount(data?.count || 0)
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unexpected error occurred.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
     if( lng){
-
+      loadMostRecent()
     }
 
-  }, [lng,offset,tabClicks]);
+  }, [lng,offset,tabClicks,checkedItems]);
   useEffect(() => {
     const loadMostPobular = async () => {
       try {
-        const data = await fetchMostPopularProjects(lng, offset, limit);
+        const data = await fetchMostPopularProjects(lng, offset, limit,categoriesrResult);
         setMostPobular(data?.results || []);
         setCount(data?.count || 0)
 
@@ -121,7 +130,7 @@ const Page = () => {
     if( lng)
 
     loadMostPobular();
-  }, [lng,offset,tabClicks]);
+  }, [lng,offset,tabClicks,checkedItems]);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -142,8 +151,6 @@ const Page = () => {
     loadCategories();
   }, [lng]);
 
-  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
-  const [textFieldValue, setTextFieldValue] = useState<string>("");
 
   const items = categories?.map((category) => ({
     id: category.id,
@@ -162,7 +169,7 @@ const Page = () => {
       .filter((it) => newCheckedItems[it.id])
       .map((it) => `${it.label} (${it.projectCount})`);
     setTextFieldValue(checkedValues.join(", "));
-    loadMostRecent()
+    // loadMostRecent()
   };
 
   useEffect(() => {
